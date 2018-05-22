@@ -14,9 +14,3 @@ def init_name_data():
     with open(os.path.join(base_folder, 'sources', 'name_data.json'), encoding='utf-8') as f:
         data = json.load(f)
         return data
-
-
-
-
-
-
