@@ -1,19 +1,15 @@
 import random
 import time
 from collections import namedtuple
-from flask_blog.slumpgen.data_loader import init_data, init_name_data, parse_race, parse_profession, parse_attribute, parse_skill, parse_talent
+from ...slumpgen.data_loader import init_char_data, init_name_data
 
-data = init_data()
+char_data = init_char_data()
 name_data = init_name_data()
 
 Adventurer = namedtuple('Adventurer', 'name title race age renown profession attributes skills talents')
-
-def get_races():
-    return [parse_race(r) for r in data['races']]
-
-
-def get_professions():
-    return [parse_profession(p) for p in data['professions']]
+Race = namedtuple('Race', 'name ages attribute professions talent')
+Age = namedtuple('Age', 'name weight renown attribute_points skill_points talent_points')
+Profession = namedtuple('Profession', 'name attribute skills talents')
 
 
 # returns a namedtuple of type Adventurer with randomly generated values
@@ -23,7 +19,7 @@ def create_adventurer(race=None, profession=None):
 
     # the main weight used for random selection
     # in regards to race, profession, and owned skills
-    main_weight = data['weights']['main_weight']
+    main_weight = char_data['weights']['main_weight']
 
     # returns a dictionary key chosen by its weight (value)
     # the higher the weight, the likelier it is that the key is chosen
@@ -70,8 +66,8 @@ def create_adventurer(race=None, profession=None):
     # returns a dictionary of attributes with values weighted in favor of the
     # supplied race and profession's main attributes
     def get_attributes(race, age, profession):
-        attribute_weight = data['weights']['attribute_weight']
-        attributes = [parse_attribute(a) for a in data['attributes']]
+        attribute_weight = char_data['weights']['attribute_weight']
+        attributes = [parse_attribute(a) for a in char_data['attributes']]
         attribute_weights = {**{a['name']: attribute_weight for a in attributes if a['name'] == race.attribute['name']
                                 or a['name'] == profession.attribute['name']},
                              **{a['name']: 100 - attribute_weight for a in attributes if
@@ -81,7 +77,7 @@ def create_adventurer(race=None, profession=None):
 
     # returns a dictionary of skills with values weighted in favor of the supplied profession's typical skills
     def get_skills(age, profession):
-        skills = [parse_skill(s) for s in data['skills']]
+        skills = [parse_skill(s) for s in char_data['skills']]
         skill_weights = {**{s['name']: main_weight for s in skills if
                             s['name'] in [s['name'] for s in profession.skills]},
                          **{s['name']: 100 - main_weight for s in skills if
@@ -91,7 +87,7 @@ def create_adventurer(race=None, profession=None):
     # returns a dictionary of talents with value weights based on race, profession and character skills
     def get_talents(race, age, profession, skills):
         owned_skills = [s['name'] for s in skills if s['level'] > 0]
-        talents = [parse_talent(t) for t in data['talents'] if t['type'] == "general" or
+        talents = [parse_talent(t) for t in char_data['talents'] if t['type'] == "general" or
                    t['name'] in [t['name'] for t in profession.talents] or
                    t['name'] == race.talent['name']]
 
@@ -188,6 +184,51 @@ def create_adventurer(race=None, profession=None):
                       talents=char_talents)
 
 
-def char_generator():
-    while True:
-        yield create_adventurer()
+def parse_race(r):
+    return Race(name=r['name'],
+                ages=[parse_age(r, a) for a in char_data['ages'] if a['name'] in r['ages']],
+                attribute=[parse_attribute(a) for a in char_data['attributes'] if a['name'] in r['attribute']][0],
+                professions=[parse_profession(p) for p in char_data['professions'] if p['name'] in r['professions']],
+                talent=[parse_talent(t) for t in char_data['talents'] if r['talent'] == t['name']][0])
+
+
+def parse_age(r, a):
+    return Age(name=a['name'],
+               weight=r['ages'][a['name']],
+               renown=a['renown'],
+               attribute_points=a['attribute_points'],
+               skill_points=a['skill_points'],
+               talent_points=a['talent_points'])
+
+
+def parse_attribute(a):
+    return {'name': a['name'], 'level': 2}
+
+
+def parse_profession(p):
+    return Profession(name=p['name'],
+                      attribute=[parse_attribute(a) for a in char_data['attributes'] if a['name'] in p['attribute']][0],
+                      skills=[parse_skill(s) for s in char_data['skills'] if s['name'] in p['skills']],
+                      talents=[parse_talent(t) for t in char_data['talents'] if t['name'] in p['talents']])
+
+
+def parse_skill(s):
+    return {'name': s['name'],
+            'attribute': [parse_attribute(a) for a in char_data['attributes'] if a['name'] in s['attribute']][0],
+            'level': 0}
+
+
+def parse_talent(t):
+    return {'name': t['name'],
+            'type': t['type'],
+            'races': t['races'],
+            'professions': t['professions'],
+            'skills': t['skills'],
+            'level': 0}
+
+def get_races():
+    return [parse_race(r) for r in char_data['races']]
+
+
+def get_professions():
+    return [parse_profession(p) for p in char_data['professions']]
