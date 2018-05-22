@@ -1,6 +1,7 @@
 import random
 import time
 from collections import namedtuple
+
 from ...slumpgen.data_loader import init_char_data, init_name_data
 
 char_data = init_char_data()
@@ -13,7 +14,7 @@ Profession = namedtuple('Profession', 'name attribute skills talents')
 
 
 # returns a namedtuple of type Adventurer with randomly generated values
-def create_adventurer(race=None, profession=None):
+def create_adventurer(requested_race=None, requested_profession=None):
     t1 = time.time()
     races = get_races()
 
@@ -38,7 +39,8 @@ def create_adventurer(race=None, profession=None):
     def assign_points(points, choices, max_points, weights):
         while points > 0:
             chosen = get_weighted_random_choice(weights)
-            if char_race.attribute['name'] == chosen and char_race.attribute['name'] == char_profession.attribute['name']:
+            if char_race.attribute['name'] == chosen and \
+                    char_race.attribute['name'] == char_profession.attribute['name']:
                 max_points = 6
             elif char_race.attribute['name'] == chosen or char_profession.attribute['name'] == chosen:
                 max_points = 5
@@ -134,9 +136,9 @@ def create_adventurer(race=None, profession=None):
                     (title_end in title_beg and title_end != ''):
                 try:
                     title_beg = random.choice(list(set(name_data['races'][race.name]['title_beginnings'] +
-                                              name_data['professions'][profession.name]['title_beginnings'])))
+                                                       name_data['professions'][profession.name]['title_beginnings'])))
                     title_end = random.choice(list(set(name_data['races'][race.name]['title_endings'] +
-                                              name_data['professions'][profession.name]['title_endings'])))
+                                                       name_data['professions'][profession.name]['title_endings'])))
                 except KeyError:
                     print(f'ERROR - COULD NOT GET NAME DATA FOR RACE {race.name} OR PROFESSION {profession.name}')
             return title_beg + title_end
@@ -151,13 +153,13 @@ def create_adventurer(race=None, profession=None):
                 title = title.replace(f'{c*3}', c*2)
         return title
 
-    if race:
-        char_race = [r for r in get_races() if r.name == race.lower()][0]
+    if requested_race:
+        char_race = [r for r in get_races() if r.name == requested_race.lower()][0]
     else:
         char_race = random.choice(races)
 
-    if profession:
-        char_profession = [p for p in get_professions() if p.name == profession.lower()][0]
+    if requested_profession:
+        char_profession = [p for p in get_professions() if p.name == requested_profession.lower()][0]
     else:
         char_profession = get_profession(char_race)
 
@@ -225,6 +227,7 @@ def parse_talent(t):
             'professions': t['professions'],
             'skills': t['skills'],
             'level': 0}
+
 
 def get_races():
     return [parse_race(r) for r in char_data['races']]
