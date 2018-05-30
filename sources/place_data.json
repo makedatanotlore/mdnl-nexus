@@ -1,0 +1,300 @@
+{
+  "villages": {
+    "sizes": [
+      { "name": "utpost",
+        "weight": 3,
+        "min_population": 5,
+        "max_population": 20,
+        "min_institutions": 1,
+        "max_institutions": 1},
+      {
+        "name": "liten by",
+        "weight": 4,
+        "min_population": 20,
+        "max_population": 100,
+        "min_institutions": 3,
+        "max_institutions": 3},
+      { "name": "stor by",
+        "weight": 1,
+        "min_population": 100,
+        "max_population": 400,
+        "min_institutions": 6,
+        "max_institutions": 11}
+    ],
+    "ages": [
+      { "name": "innan blodsdimman",
+        "weight": 6,
+        "min_age": 300,
+        "max_age": 1100},
+      { "name": "under de alderländska krigen",
+        "weight": 5,
+        "min_age": 305,
+        "max_age": 360},
+      { "name": "under blodsdimmans tid",
+        "weight": 31,
+        "min_age": 5,
+        "max_age": 280},
+      { "name": "efter blodsdimman",
+        "weight": 6,
+        "min_age": 1,
+        "max_age": 6}
+    ],
+    "leaders": {
+      "oddities": ["käbblande", "grym", "svag", "girig", "klok", "excentrisk", "förvirrad", "brutal", "listig",
+        "sträng", "hemlighetsfull", "suput", "stark", "vis"],
+      "types": ["grupp av bönder", "despot", "byäldste", "borgmästare", "druid", "magiker", "anarki", "kommendant", "nasare",
+        "rostbroder", "hantverkare", "rövarhövding", "krigare"]
+    },
+    "problems": ["ulvar", "utbredd fylla", "maktkamp", "hemlig kult", "schism", "odöda", "sjukdom", "slukhål", "rövare",
+      "terroriserande monster", "slavhandel", "hemsökt av gast"],
+    "specialities": ["välsmakande vin", "gott bröd", "hantverksskicklighet", "vackert läge", "en fruktansvärd massaker",
+      "dekadens", "välbryggt öl", "gömda rikedomar", "märkliga försvinnanden", "demondyrkan",
+      "misstänksamhet mot främlingar", "gästfrihet", "gott dricksvatten"],
+    "oddities": ["udda klädedräkter", "obegriplig dialekt", "luktar illa", "full av blommor", "lerig",
+      "udda byggnadsmaterial", "tältby", "byggd på brant sluttning", "gammalt torn i mitten", "pampig byggnad",
+      "blåshål", "inavel", "märkliga matvanor", "byggd på sumpmark", "uthuggen ur klippa", "gammal begravningsplats",
+      "frivandrande kreatur", "mest befolkad av kvinnor", "allierad med best", "förbereder för bröllop",
+      "underjordiska gångar"],
+    "institutions": [
+      { "name": "ingen",
+        "weight": 6,
+        "type": "none"},
+
+      { "name": "värdshus",
+        "weight": 10,
+        "type": "tavern"},
+
+      { "name": "mjölnare",
+        "weight": 5,
+        "type": "general"},
+
+      { "name": "smed",
+        "weight": 8,
+        "type": "general"},
+
+      { "name": "jägmästare",
+        "weight": 6,
+        "type": "general"},
+
+      { "name": "handelsbod",
+        "weight": 3,
+        "type": "general"},
+
+      { "name": "tempel",
+        "weight": 2,
+        "type": "general"},
+
+      { "name": "milis",
+        "weight": 7,
+        "type": "general"},
+
+      { "name": "stall",
+        "weight": 2,
+        "type": "general"},
+
+      { "name": "skräddare",
+        "weight": 4,
+        "type": "general"},
+
+      { "name": "sjukstuga",
+        "weight": 3,
+        "type": "general"},
+
+      { "name": "skådeplats",
+        "weight": 6,
+        "type": "general"},
+
+      { "name": "skomakare",
+        "weight": 1,
+        "type": "general"},
+
+      { "name": "örthydda",
+        "weight": 2,
+        "type": "general"}
+    ],
+    "taverns": {
+      "oddities": ["smockan hänger i luften", "tunnor istället för stolar, plankor istället för bord", "stor eldstad",
+        "fällar på väggarna", "avlångt gemensamt bord", "hasardspel", "medioker bard", "snäll hund", "vresig ägare",
+        "besthuvud på väggen", "sjungande servitör", "stampat jordgolv", "födelsedagsfest", "fulla äventyrare"],
+      "specialities": ["billig utspädd öl", "köttstuvning", "grillad gnagare", "stuvade rovor", "salt fågel",
+        "blodsoppa", "eldigt kryddvin", "helstekt spädgris", "svampstuvning", "grönsaksgröt", "saltad fisk",
+        "kokad kråka", "björngryta", "dvärgiskt starköl"],
+      "guests": ["förrymd brottsling", "olycklig bonde", "ärrad skattletare", "smutsig och butter jägare",
+        "tystlåten korpsyster", "bullrig rövare", "gammal krigsveteran", "förklädd ädling", "hemlighetsfull magiker",
+        "irriterande gycklare", "dammig resenär", "hungrig dvärg", "kylig alv", "spejande tjuv"],
+      "names": {
+        "beginnings": ["tredje", "lilla", "röda", "dimmiga", "blodiga", "gamla", "gyllene", "svala", "svalkande",
+          "goda", "andra", "sista", "stegrande", "glada", "sjungande", "rullande", "hoppande", "klagande", "snikna",
+          "runda", "flammande", "första", "rinniga", "läckande", "svarta", "döda", "stora", "vrålande", "skålande",
+          "lallande", "magra", "tjocka", "feta", "trinda", "söta", "salta", "larmande", "griniga", "stuvade", "supna",
+          "varma", "trasiga", "skallrande", "smutsiga"],
+        "endings": ["lyktan", "svinet", "hjulet", "stopet", "sparven", "geten", "pilen", "krukan", "lammet", "pigan",
+          "drängen", "gubben", "draken", "gripen", "galten", "tunnan", "grytan", "barden", "spelmannen", "hunden", "katten",
+          "hästen", "jungfrun", "ulven", "vargen", "björnen", "gasten", "spöket", "råttan", "kruset", "muggen", "koppen",
+          "bägaren", "örnen", "höken", "korpen", "hammaren", "spiken", "vapnet", "svärdet", "kungen", "drottningen",
+          "kråkan", "druiden", "riddaren", "rövaren", "soldaten", "vildsvinet", "jägaren", "pålen", "spjutet",
+          "knäkten", "mannen", "kvinnan", "kocken"]}
+    },
+    "names": {
+      "beginnings": ["ag", "kråk", "ruv", "hummel", "mörk", "vit", "svart", "ar", "björn", "fjord", "orr",
+        "bol", "gnol", "kryp", "barr", "bro", "dal", "berg", "frost", "färd", "knog", "gård", "varg", "hel", "herr",
+        "häst", "hest", "näs", "kung", "grip", "bull", "köl", "korp", "kråk", "räv", "nas", "blod", "död", "dimm",
+        "ulv", "fyll", "röv", "ald", "alv", "själ", "kogg", "skråm", "kråm", "orm", "krok", "knut", "kramp", "svin",
+        "limp", "mård", "grod", "sylt", "smock"],
+      "endings": ["såker", "smöllan", "atorp", "etorp", "ehög", "ager", "eholm", "aholm", "aby", "lien", "edal", "eberg",
+        "aberg", "enäs", "inge", "inga", "träsk", "gård", "ebacka", "ered", "myren", "eby", "eved", "aved", "sved", "hult",
+        "elund", "ebo"]
+    }},
+  "dungeons": {
+    "sizes": [
+      {
+        "name": "liten",
+        "weight": 8,
+        "min_rooms": 1,
+        "max_rooms": 6
+      },
+      {
+        "name": "medelstor",
+        "weight": 7,
+        "min_rooms": 3,
+        "max_rooms": 18
+      },
+      {
+        "name": "stor",
+        "weight": 4,
+        "min_rooms": 14,
+        "max_rooms": 34
+      },
+      {
+        "name": "enorm",
+        "weight": 1,
+        "min_rooms": 56,
+        "max_rooms": 86
+      }
+    ],
+    "ages": [
+      {
+        "name": "innan skiftet",
+        "weight": 2,
+        "min_age": 1100,
+        "max_age": 6000
+      },
+      {
+        "name": "innan blodsdimman",
+        "weight": 14,
+        "min_age": 300,
+        "max_age": 1100
+      },
+      {
+        "name": "under de alderländska krigen",
+        "weight": 10,
+        "min_age": 305,
+        "max_age": 360
+      },
+      {
+        "name": "under blodsdimmans tid",
+        "weight": 24,
+        "min_age": 5,
+        "max_age": 280
+      },
+      {
+        "name": "efter blodsdimman",
+        "weight": 2,
+        "min_age": 1,
+        "max_age": 6
+      }
+    ],
+    "purposes": [
+      {
+        "name": "tempel",
+        "weight": 4
+      },
+      {
+        "name": "fäste",
+        "weight": 10
+      },
+      {
+        "name": "bosättning",
+        "weight": 12
+      },
+      {
+        "name": "gömställe",
+        "weight": 4
+      },
+      {
+        "name": "gruva",
+        "weight": 8
+      },
+      {
+        "name": "fängelse",
+        "weight": 3
+      },
+      {
+        "name": "grav",
+        "weight": 11
+      }],
+    "origins":{
+      "creators": [
+        {
+          "name": "ingen, naturligt skapad",
+          "weight": 3,
+          "manmade": false
+        },
+        {
+          "name": "alver",
+          "weight": 2,
+          "manmade": true
+        },
+        {
+          "name": "dvärgar",
+          "weight": 9,
+          "manmade": true
+        },
+        {
+          "name": "orcher",
+          "weight": 2,
+          "manmade": true
+        },
+        {
+          "name": "präster",
+          "weight": 2,
+          "manmade": true
+        },
+        {
+          "name": "en kult",
+          "weight": 3,
+          "manmade": true
+        },
+        {
+          "name": "magiker",
+          "weight": 7,
+          "manmade": true
+        },
+        {
+          "name": "krigare",
+          "weight": 3,
+          "manmade": true
+        },
+        {
+          "name": "adelsmän",
+          "weight": 11,
+          "manmade": true
+        },
+        {
+          "name": "rövare",
+          "weight": 4,
+          "manmade": true
+        },
+        {
+          "name": "demoner",
+          "weight": 2,
+          "manmade": true
+        }],
+      "reasons": ["för att hämnas", "på grund av girighet", "på grund av rädsla", "på grund av fanatisk tro", "som en gåva",
+        "för att gömma något", "som ett monument", "på grund av makthunger", "för att överleva", "på grund av passion"],
+      "manmade_events": ["men sedan ödelagdes den av sjukdom", "men sedan ödelagdes den av en översvämning",
+        "men sedan dog skaparna av hungersnöd", "men sedan utplånades skaparna av magiska experiment",
+      "men sedan tog resurserna slut och grottan övergavs", "men sedan utplånades skaparna av en mystisk artefakt",
+      "och nu är den hemsökt av skaparnas osaliga döda", "men sedan gick den under på grund av interna strigheter",
+      "men sedan invaderades den av fiender", "och bebos än idag av skaparna", "och nu kryllar det av oknytt"]}
+  }}
