@@ -101,7 +101,7 @@
         "type": "general"},
 
       { "name": "skådeplats",
-        "weight": 6,
+        "weight": 3,
         "type": "general"},
 
       { "name": "skomakare",
@@ -115,13 +115,24 @@
     "taverns": {
       "oddities": ["smockan hänger i luften", "tunnor istället för stolar, plankor istället för bord", "stor eldstad",
         "fällar på väggarna", "avlångt gemensamt bord", "hasardspel", "medioker bard", "snäll hund", "vresig ägare",
-        "besthuvud på väggen", "sjungande servitör", "stampat jordgolv", "födelsedagsfest", "fulla äventyrare"],
+        "besthuvud på väggen", "sjungande servitör", "stampat jordgolv", "födelsedagsfest", "fulla äventyrare",
+        "rika gäster", "fattiga gäster", "många resenärer", "klibbiga golv och väggar", "duktig bard",
+        "stor vapensamling på väggen", "ristat klotter på borden"],
       "specialities": ["billig utspädd öl", "köttstuvning", "grillad gnagare", "stuvade rovor", "salt fågel",
         "blodsoppa", "eldigt kryddvin", "helstekt spädgris", "svampstuvning", "grönsaksgröt", "saltad fisk",
-        "kokad kråka", "björngryta", "dvärgiskt starköl"],
+        "kokad kråka", "björngryta", "dvärgiskt starköl", "kråkspett", "larvkompott", "kryddiga bär",
+        "vildsvinskorv", "björnstek", "vargtunga", "ugnsbakad grismage", "sjömannapaj", "kryddad mossa",
+        "späckburgare", "fisksoppa", "grågrynsgröt", "inlagda gurkor", "sill och potatis", "plättar och krusbärssylt",
+        "fläsk och potäter", "råttatouille", "vitlöksskorpor", "marinerade vildsvinsspjäll", "getsmör", "mögelost",
+        "grillad varglever", "inlagd ål", "knapriga småkryp", "mjödkokta grisfötter", "smörad torsk", "stekt potatis",
+        "grilltallrik", "långkokt fasan", "ostomelett", "äppelpaj med vispad grädde", "alviskt drömvin", "halvlingsöl",
+        "älgstek", "brunsoppa", "kålsoppa", "kolgrillad hjortfilé", "hästpaj", "rävpytt", "ångade musslor", "hembränd hojt",
+        "hare med murklor"],
       "guests": ["förrymd brottsling", "olycklig bonde", "ärrad skattletare", "smutsig och butter jägare",
         "tystlåten korpsyster", "bullrig rövare", "gammal krigsveteran", "förklädd ädling", "hemlighetsfull magiker",
-        "irriterande gycklare", "dammig resenär", "hungrig dvärg", "kylig alv", "spejande tjuv"],
+        "irriterande gycklare", "dammig resenär", "hungrig dvärg", "kylig alv", "spejande tjuv", "gladlynt byfåne",
+        "bråkig bybo", "förklädd orchkvinna", "charmig skald", "påfrestande nasare", "välklädd ädling",
+        "drucken rostbroder"],
       "names": {
         "beginnings": ["tredje", "lilla", "röda", "dimmiga", "blodiga", "gamla", "gyllene", "svala", "svalkande",
           "goda", "andra", "sista", "stegrande", "glada", "sjungande", "rullande", "hoppande", "klagande", "snikna",
@@ -133,17 +144,21 @@
           "hästen", "jungfrun", "ulven", "vargen", "björnen", "gasten", "spöket", "råttan", "kruset", "muggen", "koppen",
           "bägaren", "örnen", "höken", "korpen", "hammaren", "spiken", "vapnet", "svärdet", "kungen", "drottningen",
           "kråkan", "druiden", "riddaren", "rövaren", "soldaten", "vildsvinet", "jägaren", "pålen", "spjutet",
-          "knäkten", "mannen", "kvinnan", "kocken"]}
+          "knäkten", "mannen", "kvinnan", "kocken", "ödlemannen"]}
     },
     "names": {
       "beginnings": ["ag", "kråk", "ruv", "hummel", "mörk", "vit", "svart", "ar", "björn", "fjord", "orr",
         "bol", "gnol", "kryp", "barr", "bro", "dal", "berg", "frost", "färd", "knog", "gård", "varg", "hel", "herr",
         "häst", "hest", "näs", "kung", "grip", "bull", "köl", "korp", "kråk", "räv", "nas", "blod", "död", "dimm",
         "ulv", "fyll", "röv", "ald", "alv", "själ", "kogg", "skråm", "kråm", "orm", "krok", "knut", "kramp", "svin",
-        "limp", "mård", "grod", "sylt", "smock"],
+        "limp", "mård", "grod", "sylt", "smock", "knöl", "rov", "bog", "öl", "mjöd", "rutt", "tråk", "gråt", "vel",
+        "slit", "drägg", "träck", "dyng", "mos", "eld", "pess", "gröt", "sket", "klag", "när", "fjärr", "knyst", "knytt",
+        "korv", "fläsk", "nöt", "orm", "rund", "rus", "dis", "kärr", "myr", "ved", "ax", "yx", "dvärg", "järv", "vitt",
+        "vild", "knus", "skall", "kram", "kräm", "plåg", "silver", "guld", "örn", "vin", "eld", "dagg", "natt", "dag",
+        "dräng", "pig", "sväng", "snut", "trån", "bus", "fan", "demon", "mörk", "ljus", "grav", "vätt", "tråk"],
       "endings": ["såker", "smöllan", "atorp", "etorp", "ehög", "ager", "eholm", "aholm", "aby", "lien", "edal", "eberg",
         "aberg", "enäs", "inge", "inga", "träsk", "gård", "ebacka", "ered", "myren", "eby", "eved", "aved", "sved", "hult",
-        "elund", "ebo"]
+        "elund", "ebo", "kärr", "haga", "hage", "egård", "håla", "byen", "egård"]
     }},
   "dungeons": {
     "sizes": [
@@ -236,7 +251,7 @@
     "origins":{
       "creators": [
         {
-          "name": "ingen, naturligt skapad",
+          "name": "ingen, den är naturligt skapad",
           "weight": 3,
           "manmade": false
         },
@@ -290,11 +305,389 @@
           "weight": 2,
           "manmade": true
         }],
-      "reasons": ["för att hämnas", "på grund av girighet", "på grund av rädsla", "på grund av fanatisk tro", "som en gåva",
-        "för att gömma något", "som ett monument", "på grund av makthunger", "för att överleva", "på grund av passion"],
-      "manmade_events": ["men sedan ödelagdes den av sjukdom", "men sedan ödelagdes den av en översvämning",
-        "men sedan dog skaparna av hungersnöd", "men sedan utplånades skaparna av magiska experiment",
-      "men sedan tog resurserna slut och grottan övergavs", "men sedan utplånades skaparna av en mystisk artefakt",
-      "och nu är den hemsökt av skaparnas osaliga döda", "men sedan gick den under på grund av interna strigheter",
-      "men sedan invaderades den av fiender", "och bebos än idag av skaparna", "och nu kryllar det av oknytt"]}
+      "reasons": ["hämnd", "girighet", "rädsla", "fanatisk tro", "gåva",
+        "för att gömma något", "som ett monument", "makthunger", "överlevnad", "på grund av passion"],
+      "histories": ["ödelagdes av sjukdom", "ödelagdes av en översvämning",
+        "skaparna dog av hungersnöd", "skaparna uplånades av magiska experiment",
+        "resurserna tog slut och grottan övergavs", "skaparna utplånades av en mystisk artefakt",
+        "hemsökt av skaparnas osaliga döda", "gick under på grund av interna strigheter",
+        "invaderades av fiender", "bebos än idag av skaparna"]},
+    "inhabitants": [{
+      "name": "magiker",
+      "weight": 1
+    },
+      {
+        "name": "rövare",
+        "weight": 2
+      },
+      {
+        "name": "slavhandlare",
+        "weight": 2
+      },
+      {
+        "name": "orcher",
+        "weight": 6
+      },
+      {
+        "name": "svartalver",
+        "weight": 2
+      },
+      {
+        "name": "neslingar",
+        "weight": 2
+      },
+      {
+        "name": "rovfladdermöss",
+        "weight": 6
+      },
+      {
+        "name": "jättespindlar",
+        "weight": 1
+      },
+      {
+        "name": "dvärgar",
+        "weight": 1
+      },
+      {
+        "name": "reptilfolk",
+        "weight": 1
+      },
+      {
+        "name": "resar",
+        "weight": 1
+      },
+      {
+        "name": "odöda",
+        "weight": 6
+      },
+      {
+        "name": "gastar",
+        "weight": 1
+      },
+      {
+        "name": "insektoider",
+        "weight": 1
+      },
+      {
+        "name": "minotaurer",
+        "weight": 1
+      },
+      {
+        "name": "stryparrankor",
+        "weight": 1
+      },
+      {
+        "name": "nattulvar",
+        "weight": 1
+      },
+      {
+        "name": "avgrundsmask",
+        "weight": 1
+      },
+      {
+        "name": "jättebläckfisk",
+        "weight": 1
+      },
+      {
+        "name": "sjöorm",
+        "weight": 1
+      },
+      {
+        "name": "blodling",
+        "weight": 1
+      },
+      {
+        "name": "hydra",
+        "weight": 1
+      },
+      {
+        "name": "mantikora",
+        "weight": 1
+      },
+      {
+        "name": "drakorm",
+        "weight": 1
+      },
+      {
+        "name": "demon",
+        "weight": 1
+      },
+      {
+        "name": "drake",
+        "weight": 1
+      }],
+    "entrances": [{
+      "name": "under en byggnad",
+      "weight": 2
+    },
+      {
+        "name": "formad som en gapande käft",
+        "weight": 2
+      },
+      {
+        "name": "under ett knotigt träd",
+        "weight": 1
+      },
+      {
+        "name": "en bastant stendörr",
+        "weight": 9
+      },
+      {
+        "name": "på en klippavsats",
+        "weight": 1
+      },
+      {
+        "name": "genom ett mörkt slukhål",
+        "weight": 1
+      },
+      {
+        "name": "vid en vittrande staty",
+        "weight": 1
+      },
+      {
+        "name": "under vatten",
+        "weight": 2
+      },
+      {
+        "name": "en grottöppning",
+        "weight": 9
+      },
+      {
+        "name": "överväxt av mossa",
+        "weight": 2
+      },
+      {
+        "name": "i botten av en djup ravin",
+        "weight": 1
+      },
+      {
+        "name": "i ett torn",
+        "weight": 1
+      },
+      {
+        "name": "i en kulle",
+        "weight": 2
+      },
+      {
+        "name": "under ett mausoleum",
+        "weight": 3
+      },
+      {
+        "name": "bakom en dörr av ben",
+        "weight": 2
+      },
+      {
+        "name": "en svindlande trappa ner i djupet",
+        "weight": 2
+      },
+      {
+        "name": "en gång med ett tungt galler som slår igen och spärrar in äventyrarna",
+        "weight": 2
+      }],
+    "oddities":["onaturligt varmt", "fuktigt", "pölar av vatten", "luktar död", "svampar", "märkliga blommor",
+      "slemmiga väggar", "torkat blod", "väggmålningar", "onaturliga ekon", "sprickor", "staty", "alkover", "altare",
+      "mossa", "droppande ljud", "ett förvridet träd", "pulserande ljud", "mumifierat lik", "eldstad", "avgrundshål",
+      "brunn", "underligt formad dödskalle", "mosaik", "förstenad varelse", "tom sarkofag", "aska i form av en mänsklig skepnad",
+      "ormar", "insektet", "råttor", "fladdermöss", "spindelväv", "ett golv fullt av skelettdelar", "varning skriven med blod på väggen",
+      "vilsen äventyrare"],
+    "rooms": {
+      "types": [
+        {
+          "name": "korridor",
+          "weight": 2,
+          "content_rolls": 0},
+        {
+          "name": "rum",
+          "weight": 2,
+          "content_rolls": 1},
+        {
+          "name": "sal",
+          "weight": 1,
+          "content_rolls": 2},
+        {
+          "name": "trappor eller nedgång",
+          "weight": 1,
+          "content_rolls": 0}],
+      "entrances": [
+        {
+          "number": 1,
+          "weight": 2},
+        {
+          "number": 2,
+          "weight": 1},
+        {
+          "number": 3,
+          "weight": 1},
+        {
+          "number": 4,
+          "weight": 1},
+        {
+          "number": 5,
+          "weight": 1},
+        {
+          "number": 0,
+          "weight": 1}],
+      "entrance_states": [
+        {
+          "status": "vidöppen",
+          "weight": 1,
+          "trapped": false},
+        {
+          "status": "olåst",
+          "weight": 1,
+          "trapped": false},
+        {
+          "status": "olåst men blockerad",
+          "weight": 1,
+          "trapped": false},
+        {
+          "status": "låst",
+          "weight": 2,
+          "trapped": false},
+        {
+          "status": "låst och försedd med fälla",
+          "weight": 1,
+          "trapped": true}
+      ],
+      "contents": [
+        {
+          "name": "inget",
+          "weight": 3,
+          "treasure_chance": 1,
+          "inhabited": false,
+          "trapped": false
+        },
+        {
+          "name": "varelse",
+          "weight": 2,
+          "treasure_chance": 2,
+          "inhabited": true,
+          "trapped": false
+        },
+        {
+          "name": "fälla",
+          "weight": 1,
+          "treasure_chance": 3,
+          "inhabited": false,
+          "trapped": true
+        }],
+      "treasures": [
+        {
+          "name": "sarkofag",
+          "weight": 1,
+          "trap_chance": 1,
+          "enemy": {"name": "gast", "chance": 1},
+          "simple_treasure_rolls": 0,
+          "valuable_treasure_rolls": 1,
+          "precious_treasure_rolls": 1
+        },
+        {
+          "name": "kista",
+          "weight": 1,
+          "trap_chance": 2,
+          "enemy": {"name": "", "chance": 0},
+          "simple_treasure_rolls": 1,
+          "valuable_treasure_rolls": 1,
+          "precious_treasure_rolls": 0
+        },
+        {
+          "name": "enkelt fynd",
+          "weight": 2,
+          "trap_chance": 0,
+          "enemy": {"name": "", "chance": 0},
+          "simple_treasure_rolls": 1,
+          "valuable_treasure_rolls": 0,
+          "precious_treasure_rolls": 0
+        },
+        {
+          "name": "värdefullt fynd",
+          "weight": 1,
+          "trap_chance": 0,
+          "enemy": {"name": "", "chance": 0},
+          "simple_treasure_rolls": 0,
+          "valuable_treasure_rolls": 1,
+          "precious_treasure_rolls": 0
+        }],
+      "traps": [
+        {
+          "name": "fallucka",
+          "weight": 5,
+          "effect": "fall ((effect)) meter",
+          "victim": "den som går först",
+          "effect_min": 4,
+          "effect_max": 9
+        },
+        {
+          "name": "spjut",
+          "weight": 8,
+          "effect": "attack med sju grundtärningar, vapenskapa 2, stickskada",
+          "victim": "den som går först",
+          "effect_min": 0,
+          "effect_max": 0
+        },
+        {
+          "name": "Pilar",
+          "weight": 8,
+          "effect": "attack med fem grundtärningar, vapenskada 1, stickskada",
+          "victim": "de två som går först",
+          "effect_min": 0,
+          "effect_max": 0
+        },
+        {
+          "name": "gift",
+          "weight": 3,
+          "effect": "dödligt gift (giftstyrka ((effect)))",
+          "victim": "den som går först",
+          "effect_min": 4,
+          "effect_max": 9
+        },
+        {
+          "name": "gas",
+          "weight": 8,
+          "effect": "hallucinogent gift (giftstyrka ((effect)))",
+          "victim": "alla",
+          "effect_min": 5,
+          "effect_max": 10
+        },
+        {
+          "name": "stenbumling",
+          "weight": 4,
+          "effect": "attack med sju grundtärningar, vapenskada 1, krosskada",
+          "victim": "slumpmässigt vald äventyrare",
+          "effect_min": 0,
+          "effect_max": 0
+        },
+        {
+          "name": "spikar",
+          "weight": 4,
+          "effect": "attack med sex grundtärningar, vapenskada 2, stickskada",
+          "victim": "slumpmässigt vald äventyrare",
+          "effect_min": 0,
+          "effect_max": 0
+        },
+        {
+          "name": "vatten",
+          "weight": 2,
+          "effect": "slag för rörlighet(-1) för att undvika, annars se drunkning (Spelarboken sid xx). nytt slag för rörlighet får slås varje runda för att fly.",
+          "victim": "alla",
+          "effect_min": 0,
+          "effect_max": 0
+        },
+        {
+          "name": "krossande väggar",
+          "weight": 2,
+          "effect": "slag för rörlighet(-1) för att undvika, annars attack med tio grundtärningar, vapenskada 1, krosskada. fortsätter varje runda tills rörlighet-slaget lyckas.",
+          "victim": "alla",
+          "effect_min": 0,
+          "effect_max": 0
+        },
+        {
+          "name": "eld",
+          "weight": 3,
+          "effect": "attack med sju grundtärningar, vapenskada 1. fortsätter varje runda tills slag för rörlighet lyckats släcka kläderna.",
+          "victim": "slumpmässigt vald äventyrare",
+          "effect_min": 0,
+          "effect_max": 0
+        }]}
+
   }}
