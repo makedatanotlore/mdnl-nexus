@@ -217,7 +217,8 @@ def create_adventurer(requested_race=None, requested_profession=None):
                       profession=char_profession.name,
                       attributes=[{'name': a.get('name'), 'level': a.get('level')} for a in char_attributes],
                       skills=[{'name': s.get('name'), 'level': s.get('level')} for s in char_skills],
-                      talents=[{'name': t.get('name'), 'level': t.get('level')} for t in char_talents])
+                      talents=[{'name': t.get('name'), 'level': t.get('level'), 'type': t.get('type')}
+                               for t in char_talents])
 
 
 if __name__ == '__main__':
