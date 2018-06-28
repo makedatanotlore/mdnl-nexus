@@ -31,7 +31,7 @@
         "min_age": 305,
         "max_age": 360},
       { "name": "under blodsdimmans tid",
-        "weight": 31,
+        "weight": 19,
         "min_age": 5,
         "max_age": 280},
       { "name": "efter blodsdimman",
@@ -45,23 +45,23 @@
       "types": ["grupp av bönder", "despot", "byäldste", "borgmästare", "druid", "magiker", "anarki", "kommendant", "nasare",
         "rostbroder", "hantverkare", "rövarhövding", "krigare"]
     },
-    "problems": ["ulvar", "utbredd fylla", "maktkamp", "hemlig kult", "schism", "odöda", "sjukdom", "slukhål", "rövare",
-      "terroriserande monster", "slavhandel", "hemsökt av gast"],
+    "problems": ["ulvar", "utbredd fylla", "maktkamp", "hemlig kult", "odöda", "sjukdom", "slukhål", "rövare",
+      "terroriserande monster", "slavhandel", "hemsökt av gast", "svält", "orcher"],
     "specialities": ["välsmakande vin", "gott bröd", "hantverksskicklighet", "vackert läge", "en fruktansvärd massaker",
       "dekadens", "välbryggt öl", "gömda rikedomar", "märkliga försvinnanden", "demondyrkan",
-      "misstänksamhet mot främlingar", "gästfrihet", "gott dricksvatten"],
+      "misstänksamhet mot främlingar", "gästfrihet", "gott dricksvatten", "bra hästar", "bördig mark", "karg mark"],
     "oddities": ["udda klädedräkter", "obegriplig dialekt", "luktar illa", "full av blommor", "lerig",
       "udda byggnadsmaterial", "tältby", "byggd på brant sluttning", "gammalt torn i mitten", "pampig byggnad",
       "blåshål", "inavel", "märkliga matvanor", "byggd på sumpmark", "uthuggen ur klippa", "gammal begravningsplats",
       "frivandrande kreatur", "mest befolkad av kvinnor", "allierad med best", "förbereder för bröllop",
-      "underjordiska gångar"],
+      "underjordiska gångar", "mest befolkad av män", "många dvärgar", "många alver", "många halvalver"],
     "institutions": [
       { "name": "ingen",
         "weight": 6,
         "type": "none"},
 
       { "name": "värdshus",
-        "weight": 10,
+        "weight": 6,
         "type": "tavern"},
 
       { "name": "mjölnare",
@@ -69,11 +69,11 @@
         "type": "general"},
 
       { "name": "smed",
-        "weight": 8,
+        "weight": 4,
         "type": "general"},
 
       { "name": "jägmästare",
-        "weight": 6,
+        "weight": 3,
         "type": "general"},
 
       { "name": "handelsbod",
@@ -85,7 +85,7 @@
         "type": "general"},
 
       { "name": "milis",
-        "weight": 7,
+        "weight": 3,
         "type": "general"},
 
       { "name": "stall",
@@ -110,7 +110,19 @@
 
       { "name": "örthydda",
         "weight": 2,
-        "type": "general"}
+        "type": "general"},
+
+      { "name": "marknadsplats",
+        "weight": 2,
+        "type": "general"},
+
+      { "name": "galgbacke",
+        "weight": 1,
+        "type": "general"},
+
+      {"name": "fruktträdgård",
+      "weight": 1,
+      "type": "general"}
     ],
     "taverns": {
       "oddities": ["smockan hänger i luften", "tunnor istället för stolar, plankor istället för bord", "stor eldstad",
@@ -127,7 +139,7 @@
         "grillad varglever", "inlagd ål", "knapriga småkryp", "mjödkokta grisfötter", "smörad torsk", "stekt potatis",
         "grilltallrik", "långkokt fasan", "ostomelett", "äppelpaj med vispad grädde", "alviskt drömvin", "halvlingsöl",
         "älgstek", "brunsoppa", "kålsoppa", "kolgrillad hjortfilé", "hästpaj", "rävpytt", "ångade musslor", "hembränd hojt",
-        "hare med murklor"],
+        "hare med murklor", "harpalt"],
       "guests": ["förrymd brottsling", "olycklig bonde", "ärrad skattletare", "smutsig och butter jägare",
         "tystlåten korpsyster", "bullrig rövare", "gammal krigsveteran", "förklädd ädling", "hemlighetsfull magiker",
         "irriterande gycklare", "dammig resenär", "hungrig dvärg", "kylig alv", "spejande tjuv", "gladlynt byfåne",
@@ -138,13 +150,13 @@
           "goda", "andra", "sista", "stegrande", "glada", "sjungande", "rullande", "hoppande", "klagande", "snikna",
           "runda", "flammande", "första", "rinniga", "läckande", "svarta", "döda", "stora", "vrålande", "skålande",
           "lallande", "magra", "tjocka", "feta", "trinda", "söta", "salta", "larmande", "griniga", "stuvade", "supna",
-          "varma", "trasiga", "skallrande", "smutsiga"],
+          "varma", "trasiga", "skallrande", "smutsiga", "nakna"],
         "endings": ["lyktan", "svinet", "hjulet", "stopet", "sparven", "geten", "pilen", "krukan", "lammet", "pigan",
           "drängen", "gubben", "draken", "gripen", "galten", "tunnan", "grytan", "barden", "spelmannen", "hunden", "katten",
           "hästen", "jungfrun", "ulven", "vargen", "björnen", "gasten", "spöket", "råttan", "kruset", "muggen", "koppen",
           "bägaren", "örnen", "höken", "korpen", "hammaren", "spiken", "vapnet", "svärdet", "kungen", "drottningen",
           "kråkan", "druiden", "riddaren", "rövaren", "soldaten", "vildsvinet", "jägaren", "pålen", "spjutet",
-          "knäkten", "mannen", "kvinnan", "kocken", "ödlemannen"]}
+          "knäkten", "mannen", "kvinnan", "kocken", "ödlemannen", "mantikoran", "vildvittran"]}
     },
     "names": {
       "beginnings": ["ag", "kråk", "ruv", "hummel", "mörk", "vit", "svart", "ar", "björn", "fjord", "orr",
@@ -154,11 +166,15 @@
         "limp", "mård", "grod", "sylt", "smock", "knöl", "rov", "bog", "öl", "mjöd", "rutt", "tråk", "gråt", "vel",
         "slit", "drägg", "träck", "dyng", "mos", "eld", "pess", "gröt", "sket", "klag", "när", "fjärr", "knyst", "knytt",
         "korv", "fläsk", "nöt", "orm", "rund", "rus", "dis", "kärr", "myr", "ved", "ax", "yx", "dvärg", "järv", "vitt",
-        "vild", "knus", "skall", "kram", "kräm", "plåg", "silver", "guld", "örn", "vin", "eld", "dagg", "natt", "dag",
-        "dräng", "pig", "sväng", "snut", "trån", "bus", "fan", "demon", "mörk", "ljus", "grav", "vätt", "tråk"],
+        "vild", "knus", "skall", "kram", "kräm", "plåg", "silver", "guld", "vin", "eld", "dagg", "natt", "dag",
+        "dräng", "pig", "sväng", "snut", "trån", "bus", "fan", "demon", "mörk", "ljus", "grav", "vätt", "tråk",
+        "sten", "röd", "purpur", "vinter", "ek", "blud", "snö", "vind", "storm", "eld", "rost", "grip",
+        "dim", "skog", "karg", "djup", "alder", "regn", "örn", "drak", "frost", "natt", "ros", "flod", "sjö", "is",
+        "sol", "mån", "varg", "skymning", "tjur"],
       "endings": ["såker", "smöllan", "atorp", "etorp", "ehög", "ager", "eholm", "aholm", "aby", "lien", "edal", "eberg",
         "aberg", "enäs", "inge", "inga", "träsk", "gård", "ebacka", "ered", "myren", "eby", "eved", "aved", "sved", "hult",
-        "elund", "ebo", "kärr", "haga", "hage", "egård", "håla", "byen", "egård"]
+        "elund", "ebo", "kärr", "haga", "hage", "egård", "håla", "byen", "egård", "marken", "mark", "kulla", "akulla",
+      "klippa", "klint", "backa", "backe"]
     }},
   "dungeons": {
     "sizes": [
@@ -187,13 +203,13 @@
         "max_rooms": 86
       }
     ],
-    "ages": [
-      {
-        "name": "innan skiftet",
-        "weight": 2,
-        "min_age": 1100,
-        "max_age": 6000
-      },
+    "ages":
+    [{
+      "name": "innan skiftet",
+      "weight": 2,
+      "min_age": 1100,
+      "max_age": 6000
+    },
       {
         "name": "innan blodsdimman",
         "weight": 14,
@@ -217,8 +233,7 @@
         "weight": 2,
         "min_age": 1,
         "max_age": 6
-      }
-    ],
+      }],
     "purposes": [
       {
         "name": "tempel",
@@ -312,7 +327,8 @@
         "resurserna tog slut och grottan övergavs", "skaparna utplånades av en mystisk artefakt",
         "hemsökt av skaparnas osaliga döda", "gick under på grund av interna strigheter",
         "invaderades av fiender", "bebos än idag av skaparna"]},
-    "inhabitants": [{
+    "inhabitants":
+    [{
       "name": "magiker",
       "weight": 1
     },
@@ -488,7 +504,7 @@
       "slemmiga väggar", "torkat blod", "väggmålningar", "onaturliga ekon", "sprickor", "staty", "alkover", "altare",
       "mossa", "droppande ljud", "ett förvridet träd", "pulserande ljud", "mumifierat lik", "eldstad", "avgrundshål",
       "brunn", "underligt formad dödskalle", "mosaik", "förstenad varelse", "tom sarkofag", "aska i form av en mänsklig skepnad",
-      "ormar", "insektet", "råttor", "fladdermöss", "spindelväv", "ett golv fullt av skelettdelar", "varning skriven med blod på väggen",
+      "ormar", "insekter", "råttor", "fladdermöss", "spindelväv", "ett golv fullt av skelettdelar", "varning skriven med blod på väggen",
       "vilsen äventyrare"],
     "rooms": {
       "types": [
@@ -612,7 +628,7 @@
         {
           "name": "fallucka",
           "weight": 5,
-          "effect": "fall ((effect)) meter",
+          "effect": "fall {{ effect }} meter",
           "victim": "den som går först",
           "effect_min": 4,
           "effect_max": 9
@@ -621,22 +637,18 @@
           "name": "spjut",
           "weight": 8,
           "effect": "attack med sju grundtärningar, vapenskapa 2, stickskada",
-          "victim": "den som går först",
-          "effect_min": 0,
-          "effect_max": 0
+          "victim": "den som går först"
         },
         {
           "name": "Pilar",
           "weight": 8,
           "effect": "attack med fem grundtärningar, vapenskada 1, stickskada",
-          "victim": "de två som går först",
-          "effect_min": 0,
-          "effect_max": 0
+          "victim": "de två som går först"
         },
         {
           "name": "gift",
           "weight": 3,
-          "effect": "dödligt gift (giftstyrka ((effect)))",
+          "effect": "dödligt gift (giftstyrka {{ effect }})",
           "victim": "den som går först",
           "effect_min": 4,
           "effect_max": 9
@@ -644,7 +656,7 @@
         {
           "name": "gas",
           "weight": 8,
-          "effect": "hallucinogent gift (giftstyrka ((effect)))",
+          "effect": "hallucinogent gift (giftstyrka {{ effect }})",
           "victim": "alla",
           "effect_min": 5,
           "effect_max": 10
@@ -653,41 +665,497 @@
           "name": "stenbumling",
           "weight": 4,
           "effect": "attack med sju grundtärningar, vapenskada 1, krosskada",
-          "victim": "slumpmässigt vald äventyrare",
-          "effect_min": 0,
-          "effect_max": 0
+          "victim": "slumpmässigt vald äventyrare"
         },
         {
           "name": "spikar",
           "weight": 4,
           "effect": "attack med sex grundtärningar, vapenskada 2, stickskada",
-          "victim": "slumpmässigt vald äventyrare",
-          "effect_min": 0,
-          "effect_max": 0
+          "victim": "slumpmässigt vald äventyrare"
         },
         {
           "name": "vatten",
           "weight": 2,
           "effect": "slag för rörlighet(-1) för att undvika, annars se drunkning (Spelarboken sid xx). nytt slag för rörlighet får slås varje runda för att fly.",
-          "victim": "alla",
-          "effect_min": 0,
-          "effect_max": 0
+          "victim": "alla"
         },
         {
           "name": "krossande väggar",
           "weight": 2,
           "effect": "slag för rörlighet(-1) för att undvika, annars attack med tio grundtärningar, vapenskada 1, krosskada. fortsätter varje runda tills rörlighet-slaget lyckas.",
-          "victim": "alla",
-          "effect_min": 0,
-          "effect_max": 0
+          "victim": "alla"
         },
         {
           "name": "eld",
           "weight": 3,
           "effect": "attack med sju grundtärningar, vapenskada 1. fortsätter varje runda tills slag för rörlighet lyckats släcka kläderna.",
-          "victim": "slumpmässigt vald äventyrare",
-          "effect_min": 0,
-          "effect_max": 0
+          "victim": "slumpmässigt vald äventyrare"
         }]}
+  },
+  "fortresses": {
+    "sizes": [
+      { "size": "liten",
+        "name": "utpost",
+        "weight": 4,
+        "min_garrison": 5,
+        "max_garrison": 10},
 
-  }}
+      { "size": "liten",
+        "name": "blockhus",
+        "weight": 9,
+        "min_garrison": 10,
+        "max_garrison": 20},
+
+      { "size": "liten",
+        "name": "torn",
+        "weight": 8,
+        "min_garrison": 5,
+        "max_garrison": 20},
+
+      { "size": "medelstor",
+        "name": "fort",
+        "weight": 10,
+        "min_garrison": 10,
+        "max_garrison": 40},
+
+      { "size": "medelstor",
+        "name": "fästning",
+        "weight": 11,
+        "min_garrison": 25,
+        "max_garrison": 100},
+
+      { "size": "stor",
+        "name": "borg",
+        "weight": 10,
+        "min_garrison": 50,
+        "max_garrison": 200},
+
+      { "size": "stor",
+        "name": "slott",
+        "weight": 4,
+        "min_garrison": 50,
+        "max_garrison": 300}
+    ],
+    "ages":
+    [{
+      "name": "innan skiftet",
+      "weight": 2,
+      "min_age": 1100,
+      "max_age": 6000
+    },
+      {
+        "name": "innan blodsdimman",
+        "weight": 14,
+        "min_age": 300,
+        "max_age": 1100
+      },
+      {
+        "name": "under de alderländska krigen",
+        "weight": 13,
+        "min_age": 305,
+        "max_age": 360
+      },
+      {
+        "name": "under blodsdimmans tid",
+        "weight": 18,
+        "min_age": 5,
+        "max_age": 280
+      },
+      {
+        "name": "efter blodsdimman",
+        "weight": 5,
+        "min_age": 1,
+        "max_age": 6
+      }],
+    "origins": {
+      "purposes":
+      [{
+        "name": "bostad",
+        "weight": 5
+      },
+        {
+          "name": "handelsplats",
+          "weight": 8
+        },
+        {
+          "name": "vaktpost",
+          "weight": 8
+        },
+        {
+          "name": "fängelse",
+          "weight": 3
+        },
+        {
+          "name": "skrytbygge",
+          "weight": 9
+        },
+        {
+          "name": "befästning",
+          "weight": 23
+        }],
+      "creators":
+      [{
+        "name": "alv",
+        "weight": 2
+      },
+        {
+          "name": "dvärg",
+          "weight": 4
+        },
+        {
+          "name": "nasare",
+          "weight": 2
+        },
+        {
+          "name": "skattletare",
+          "weight": 2
+        },
+        {
+          "name": "präst",
+          "weight": 2
+        },
+        {
+          "name": "magiker",
+          "weight": 2
+        },
+        {
+          "name": "rövarhövding",
+          "weight": 4
+        },
+        {
+          "name": "krigare",
+          "weight": 5
+        },
+        {
+          "name": "furste",
+          "weight": 21
+        }],
+      "claims_to_fame": ["blodtörst", "hämndlystnad", "girighet", "snålhet", "fåfänga", "visdom", "skönhet",
+        "ära", "grymhet", "godhet", "fromhet"],
+      "conditions":
+      [{"name": "ödelagd",
+        "weights":
+        {"innan skiftet": 2,
+          "innan blodsdimman": 2,
+          "under de alderländska krigen": 2,
+          "under blodsdimmans tid": 2,
+          "efter blodsdimman": 2}},
+        {"name": "förfallen",
+          "weights":
+          {"innan skiftet": 1,
+            "innan blodsdimman": 1,
+            "under de alderländska krigen": 1,
+            "under blodsdimmans tid": 1,
+            "efter blodsdimman": 1}},
+        {"name": "sliten",
+          "weights":
+          {"innan skiftet": 0,
+            "innan blodsdimman": 1,
+            "under de alderländska krigen": 2,
+            "under blodsdimmans tid": 2,
+            "efter blodsdimman": 2}},
+        {"name": "välbehållen",
+          "weights":
+          {"innan skiftet": 0,
+            "innan blodsdimman": 0,
+            "under de alderländska krigen": 1,
+            "under blodsdimmans tid": 1,
+            "efter blodsdimman": 2}}],
+      "histories": ["ödelagd i våldsam brand", "hårt ansatt under utdragen belägring", "drabbad av pest",
+        "invånarna gick under i hungersnöd", "fästningen övergavs och lämnades åt sitt öde",
+        "föll under blodig revolt", "erövrad av fienden", "säte för en tragisk händelse", "ansatt under år av krig",
+        "besatt av demoner"],
+      "inhabitants":
+      [{"name": "inga",
+        "weights":
+        {"ödelagd": 3,
+          "förfallen": 1,
+          "sliten": 1,
+          "välbehållen": 0},
+        "roll_empty": true},
+        {"name": "{{ amount }} {{ intruder }}",
+          "weights":
+          {"ödelagd": 3,
+            "förfallen": 4,
+            "sliten": 3,
+            "välbehållen": 2},
+          "roll_moved_in": true},
+        {"name": "ett fåtal ättlingar till byggaren",
+          "weights":
+          {"ödelagd": 0,
+            "förfallen": 1,
+            "sliten": 1,
+            "välbehållen": 2}},
+        {"name": "ett flertal ättlingar till byggaren",
+          "weights":
+          {"ödelagd": 0,
+            "förfallen": 0,
+            "sliten": 1,
+            "välbehållen": 1}}]
+    },
+    "intruders":
+    [{ "name": "rövare",
+      "single": "en rövare",
+      "weight": 4,
+      "amount": {
+        "liten":
+        {"min_intruders": 1,
+          "max_intruders": 6},
+        "medelstor":
+        {"min_intruders": 2,
+          "max_intruders": 12},
+        "stor":
+        {"min_intruders": 4,
+          "max_intruders": 24}}
+    },
+      { "name": "slavhandlare",
+        "single": "en slavhandlare",
+        "weight": 2,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 4,
+            "max_intruders": 24}}
+      },
+      { "name": "rostbröder",
+        "single": "en rostbroder",
+        "weight": 3,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 3,
+            "max_intruders": 18}}
+      },
+      { "name": "soldater",
+        "single": "en soldat",
+        "weight": 2,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 4,
+            "max_intruders": 24}}
+      },
+      { "name": "ryttare",
+        "single": "en ryttare",
+        "weight": 3,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 4,
+            "max_intruders": 24}}
+      },
+      { "name": "orcher",
+        "single": "en orch",
+        "weight": 4,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 4,
+            "max_intruders": 24}}
+      },
+      { "name": "svartalfer",
+        "single": "en svartalf",
+        "weight": 3,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 3,
+            "max_intruders": 18},
+          "stor":
+          {"min_intruders": 5,
+            "max_intruders": 30}}
+      },
+      { "name": "neslingar",
+        "weight": 2,
+        "amount": {
+          "liten":
+          {"min_intruders": 4,
+            "max_intruders": 24},
+          "medelstor":
+          {"min_intruders": 6,
+            "max_intruders": 36},
+          "stor":
+          {"min_intruders": 8,
+            "max_intruders": 48}}
+      },
+      { "name": "resar",
+        "single": "en rese",
+        "weight": 2,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 3,
+            "max_intruders": 18}}
+      },
+      { "name": "dvärgar",
+        "single": "en dvärg",
+        "weight": 1,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 4,
+            "max_intruders": 24}}
+      },
+      { "name": "halvlingar",
+        "single": "en halvling",
+        "weight": 1,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 4,
+            "max_intruders": 24}}
+      },
+      { "name": "vargmän",
+        "single": "en vargman",
+        "weight": 1,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 4,
+            "max_intruders": 24}}
+      },
+      { "name": "alver",
+        "single": "en alv",
+        "weight": 1,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 2,
+            "max_intruders": 12},
+          "stor":
+          {"min_intruders": 3,
+            "max_intruders": 18}}
+      },
+      { "name": "magiker",
+        "single": "en magiker",
+        "weight": 1,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 1},
+          "medelstor":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "stor":
+          {"min_intruders": 2,
+            "max_intruders": 12}}
+      },
+      { "name": "äventyrare",
+        "single": "en äventyrare",
+        "weight": 1,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "medelstor":
+          {"min_intruders": 1,
+            "max_intruders": 6},
+          "stor":
+          {"min_intruders": 1,
+            "max_intruders": 6}}
+      },
+      { "name": "{{ monster }}",
+        "weight": 4,
+        "amount": {
+          "liten":
+          {"min_intruders": 1,
+            "max_intruders": 1},
+          "medelstor":
+          {"min_intruders": 1,
+            "max_intruders": 1},
+          "stor":
+          {"min_intruders": 1,
+            "max_intruders": 1}},
+        "roll_for_monster": true
+      }],
+    "empty":
+    [{
+      "name": "en koloni rovfladdermöss",
+      "weight": 6
+    },
+      {
+        "name": "en gast",
+        "weight": 6
+      },
+      {
+        "name": "{{ amount }} skelett",
+        "weight": 6,
+        "min_amount": 4,
+        "max_amount": 24
+      },
+      {
+        "name": "{{ monster }}",
+        "weight": 7,
+        "monsters": ["en drakorm", "ett troll", "en jätte", "en mantikora", "en demon", "en drake"]
+      },
+      {
+        "name": "inga, men platsen är förbannad. varje kvartstimme på platsen utsätts äventyrarna för en skräckattack med sex grundtärningar.",
+        "weight": 9
+      },
+      {
+        "name": "helt tom. än så länge.",
+        "weight": 1
+      }],
+    "oddities": ["udda arkitektur", "blodfärgad", "omgiven av korpar", "byggd ur massiv klippa", "märkliga inskriptioner",
+      "omgiven av gravar", "byggd på slagfält", "hemsökt", "luktar illa", "underliga ljud ekar över nejden",
+      "täckt av purpurblomster", "regnar onaturligt ofta", "byggd kring uråldrig staty", "gejser som värmekälla",
+      "svampodlingar", "svärtad av sot", "prydd med dödskallar", "överväxt", "högt torn i mitten"],
+    "names": {
+      "beginnings": ["stene", "röde", "purpur", "blode", "döde", "vinter", "eke", "blude", "snö", "vind", "storme",
+        "eld", "rost", "grip", "mörker", "dim", "skogs", "karge", "djup", "alder", "regn", "örn", "ulv", "björn", "drak",
+        "frost", "natt", "ros", "fang", "flod", "sjö", "is", "sol", "mån", "varge", "skymnings"],
+      "endings": ["krok", "tand", "spira", "hus", "klo", "käft", "vann", "skans", "rös", "kull", "berg", "torn",
+        "bo", "kant", "hem", "klippa", "pik", "öga", "hål", "gap", "sköld", "näste", "mark", "lund", "glänta", "fäste",
+        "fort", "borg", "kastellet", "lyan", "sten", "håla", "mur", "vägg", "kall"]
+    }
+  }
+}

@@ -1,40 +1,36 @@
 import random
 import time
 from collections import namedtuple
+
 from . import data_loader
 from . import weighted_random
 
 place_data = data_loader.init_data('place_data.json')
+creature_data = data_loader.init_data('creature_data.json')
 
 Village = namedtuple('Village', 'type name age size leader problem speciality oddity institutions')
 Institution = namedtuple('Institution', 'name type')
 Tavern = namedtuple('Tavern', 'name type speciality oddity guest')
 Village_Size = namedtuple('Village_Size', 'name population')
-Age = namedtuple('Age', 'name years')
 
 Dungeon = namedtuple('Dungeon', 'type age size origin entrance oddity')
 Dungeon_Size = namedtuple('Dungeon_Size', 'name rooms')
+
+Fortress = namedtuple('Fortress', 'type name age size creator purpose history condition inhabitants oddity')
+Fortress_Size = namedtuple('Fortress_Size', 'name size min_garrison max_garrison')
+
+Room = namedtuple('Room', 'type doors traps treasures creatures')
+Door = namedtuple('Door', 'status trapped')
+Chest = namedtuple('Chest', 'name trapped contents')
+Treasure = namedtuple('Treasure', 'bane value weight')
+Trap = namedtuple('Trap', 'name effect victim')
+
 Origin = namedtuple('Origin', 'creator purpose reason history')
+Age = namedtuple('Age', 'name years')
 
 
 def create_village():
     t1 = time.time()
-
-    def get_name():
-        def generate_name():
-            name_beg = random.choice(list(set(place_data['villages']['names']['beginnings'])))
-            name_end = random.choice(list(set(place_data['villages']['names']['endings'])))
-            while name_beg in name_end or name_end in name_beg:
-                name_beg = random.choice(list(set(place_data['villages']['names']['beginnings'])))
-                name_end = random.choice(list(set(place_data['villages']['names']['endings'])))
-            return name_beg + name_end
-        name = generate_name()
-        for c in name:
-            if c * 4 in name:
-                name = name.replace(f'{c*4}', c*2)
-            if c * 3 in name:
-                name = name.replace(f'{c*3}', c*2)
-        return name
 
     def create_tavern():
         tavern_oddity = random.choice(place_data['villages']['taverns']['oddities'])
@@ -82,7 +78,7 @@ def create_village():
             institutions.append(Institution(name=institution, type=institution_type))
 
 
-    place_name = get_name()
+    place_name = get_name('villages')
     place_size = Village_Size(name=place_size['name'], population=place_population)
 
     village = Village(type='village', name=place_name, age=place_age, size=place_size, leader=place_leader,
@@ -135,6 +131,85 @@ def create_dungeon():
     return dungeon
 
 
+def create_fortress():
+    t1 = time.time()
+
+    place_age = get_age('fortresses')
+
+    sizes = {size['name']: size for size in place_data['fortresses']['sizes']}
+    size_weights = {size['name']: size['weight'] for size in sizes.values()}
+    place_size = sizes[weighted_random.weighted_random_choice(size_weights)]
+    place_size = Fortress_Size(name=place_size['name'], size=place_size['size'],
+                               min_garrison=place_size['min_garrison'],
+                               max_garrison=place_size['max_garrison'])
+
+    creators = {creator['name']: creator for creator in place_data['fortresses']['origins']['creators']}
+    creator_weights = {creator['name']: creator['weight'] for creator in creators.values()}
+    place_creators = weighted_random.weighted_random_choice(creator_weights)
+    creator_claim_to_fame = random.choice(place_data['fortresses']['origins']['claims_to_fame'])
+
+    purpose_weights = {purpose['name']: purpose['weight'] for purpose in place_data['dungeons']['purposes']}
+    place_purpose = weighted_random.weighted_random_choice(purpose_weights)
+
+    conditions = {condition['name']: condition for condition in place_data['fortresses']['origins']['conditions']}
+    condition_weights = {condition['name']: condition['weights'][place_age.name] for condition in conditions.values()}
+    place_condition = weighted_random.weighted_random_choice(condition_weights)
+
+    place_history = random.choice(place_data['fortresses']['origins']['histories'])
+
+    inhabiteds = {result['name']: result for result in place_data['fortresses']['origins']['inhabitants']}
+    inhabited_weights = {result['name']: result['weights'][place_condition] for result in inhabiteds.values()}
+    place_inhabited = inhabiteds[weighted_random.weighted_random_choice(inhabited_weights)]
+
+    if place_inhabited.get('roll_empty'):
+        empties = {empty['name']: empty for empty in place_data['fortresses']['empty']}
+        empty_weights = {empty['name']: empty['weight'] for empty in empties.values()}
+        empty = empties[weighted_random.weighted_random_choice(empty_weights)]
+        if empty.get('min_amount') and empty.get('max_amount'):
+            amount = random.randint(empty['min_amount'], empty['max_amount'])
+            place_inhabited = empty['name'].replace('{{ amount }}', str(amount))
+        elif empty.get('monsters'):
+            monster = random.choice(empty['monsters'])
+            place_inhabited = empty['name'].replace('{{ monster }}', monster)
+        else:
+            place_inhabited = place_inhabited['name']
+    elif place_inhabited.get('roll_moved_in'):
+        intruders = {intruder['name']: intruder for intruder in place_data['fortresses']['intruders']}
+        intruder_weights = {intruder['name']: intruder['weight'] for intruder in intruders.values()}
+        intruders = intruders[weighted_random.weighted_random_choice(intruder_weights)]
+
+        if intruders.get('roll_for_monster'):
+            monsters = {monster['name']: monster for monster in creature_data['monsters']}
+            monster_weights = {monster['name']: monster['weight'] for monster in monsters.values()}
+            monster = monsters[weighted_random.weighted_random_choice(monster_weights)]
+            place_inhabited = place_inhabited['name'].replace('{{ amount }} {{ intruder }}',
+                                                              f'{monster["single"]} {monster["name"]}')
+        else:
+            amount = random.randint(intruders['amount'][place_size.size]['min_intruders'],
+                                    intruders['amount'][place_size.size]['max_intruders'])
+            if amount == 1:
+                place_inhabited = place_inhabited['name'].replace('{{ amount }} {{ intruder }}',
+                                                                  f'{intruders.get("single")}')
+            else:
+                place_inhabited = place_inhabited['name'].replace('{{ amount }} {{ intruder }}',
+                                                                  f'{amount} {intruders["name"]}')
+    else:
+        place_inhabited = place_inhabited['name']
+
+    place_oddity = random.choice(place_data['fortresses']['oddities'])
+
+    place_creators = f'{place_creators} känd för {creator_claim_to_fame}'
+    place_name = get_name('fortresses')
+
+    fortress = Fortress(type='fortress', name=place_name, age=place_age, size=place_size, creator=place_creators,
+                        purpose=place_purpose, history=place_history, condition=place_condition,
+                        inhabitants=place_inhabited, oddity=place_oddity)
+
+    t2 = time.time() - t1
+    print(f'fortress generated in {t2*1000} ms')
+
+    return fortress
+
 
 def get_age(place_type):
     age_weights = {age['name']: age['weight'] for age in place_data[place_type]['ages']}
@@ -145,7 +220,24 @@ def get_age(place_type):
     return place_age
 
 
-place_types = {'village': create_village, 'dungeon': create_dungeon}
+def get_name(place_type):
+    def generate_name():
+        name_beg = random.choice(list(set(place_data[place_type]['names']['beginnings'])))
+        name_end = random.choice(list(set(place_data[place_type]['names']['endings'])))
+        while name_beg in name_end or name_end in name_beg:
+            name_beg = random.choice(list(set(place_data[place_type]['names']['beginnings'])))
+            name_end = random.choice(list(set(place_data[place_type]['names']['endings'])))
+        return name_beg + name_end
+    name = generate_name()
+    for c in name:
+        if c * 4 in name:
+            name = name.replace(f'{c*4}', c*2)
+        if c * 3 in name:
+            name = name.replace(f'{c*3}', c*2)
+    return name
+
+
+place_types = {'village': create_village, 'dungeon': create_dungeon, 'fortress': create_fortress}
 
 
 def create_place(create_place_type=None):

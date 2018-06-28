@@ -1,0 +1,128 @@
+{
+  "monsters":
+  [{
+    "name": "stryparranka",
+    "single": "en",
+    "weight": 2
+  },
+  {
+    "name": "gråbjörn",
+    "single": "en",
+    "weight": 3
+  },
+  {
+    "name": "nattulv",
+    "single": "en",
+    "weight": 3
+  },
+  {
+    "name": "gast",
+    "single": "en",
+    "weight": 2
+  },
+  {
+    "name": "likätare",
+    "single": "en",
+    "weight": 2
+  },
+  {
+    "name": "skelett",
+    "single": "ett",
+    "weight": 2
+  },
+  {
+    "name": "vandöd",
+    "single": "en",
+    "weight": 2
+  },
+  {
+    "name": "flygödla",
+    "single": "en",
+    "weight": 2
+  },
+  {
+    "name": "harpyor",
+    "single": "en grupp",
+    "weight": 2
+  },
+  {
+    "name": "minotaur",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "ent",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "avgrundsmask",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "jättebläckfisk",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "sjöorm",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "troll",
+    "single": "ett",
+    "weight": 1
+  },
+  {
+    "name": "dödsriddare",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "insektoid",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "blodling",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "mantikora",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "grip",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "jätte",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "hydra",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "demon",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "drakorm",
+    "single": "en",
+    "weight": 1
+  },
+  {
+    "name": "drake",
+    "single": "en",
+    "weight": 1
+  }]
+}
