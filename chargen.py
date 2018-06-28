@@ -1,14 +1,14 @@
 import random
 import time
 from collections import namedtuple
-from . import data_loader
-from . import weighted_random
+import data_loader
+import weighted_random
 
 char_data = data_loader.init_data('char_data.json')
 Adventurer = namedtuple('Adventurer', 'name title race age renown profession attributes skills talents')
-Race = namedtuple('Race', 'name ages attribute professions talent')
+Race = namedtuple('Race', 'name ages attribute professions talent compound')
 Age = namedtuple('Age', 'name weight renown attribute_points skill_points talent_points')
-Profession = namedtuple('Profession', 'name attribute skills talents')
+Profession = namedtuple('Profession', 'name attribute skills talents definite')
 
 
 def parse_attributes():
@@ -17,24 +17,25 @@ def parse_attributes():
 
 def parse_professions():
     return [Profession(name=p['name'],
-                      attribute=[a for a in attributes if a['name'] in p['attribute']][0],
-                      skills=[s for s in skills if s['name'] in p['skills']],
-                      talents=[t for t in talents if t['name'] in p['talents']]) for p in char_data['professions']]
+                       attribute=[a for a in attributes if a['name'] in p['attribute']][0],
+                       skills=[s for s in skills if s['name'] in p['skills']],
+                       talents=[t for t in talents if t['name'] in p['talents']],
+                       definite=p['definite']) for p in char_data['professions']]
 
 
 def parse_skills():
     return [{'name': s['name'],
-            'attribute': [a for a in attributes if a['name'] in s['attribute']][0],
-            'level': 0} for s in char_data['skills']]
+             'attribute': [a for a in attributes if a['name'] in s['attribute']][0],
+             'level': 0} for s in char_data['skills']]
 
 
 def parse_talents():
     return [{'name': t['name'],
-            'type': t['type'],
-            'races': t['races'],
-            'professions': t['professions'],
-            'skills': t['skills'],
-            'level': 0} for t in char_data['talents']]
+             'type': t['type'],
+             'races': t['races'],
+             'professions': t['professions'],
+             'skills': t['skills'],
+             'level': 0} for t in char_data['talents']]
 
 
 def parse_races():
@@ -47,7 +48,8 @@ def parse_races():
                            talent_points=a['talent_points']) for a in char_data['ages'] if a['name'] in r['ages']],
                  attribute=[a for a in attributes if a['name'] in r['attribute']][0],
                  professions=[p for p in professions if p.name in r['professions']],
-                 talent=[t for t in talents if r['talent'] == t['name']][0]) for r in char_data['races']]
+                 talent=[t for t in talents if r['talent'] == t['name']][0],
+                 compound=r['compound']) for r in char_data['races']]
 
 
 
@@ -211,10 +213,10 @@ def create_adventurer(requested_race=None, requested_profession=None):
 
     return Adventurer(name=char_name,
                       title=char_title,
-                      race=char_race.name,
+                      race=char_race,
                       age=char_age.name,
                       renown=char_renown,
-                      profession=char_profession.name,
+                      profession=char_profession,
                       attributes=[{'name': a.get('name'), 'level': a.get('level')} for a in char_attributes],
                       skills=[{'name': s.get('name'), 'level': s.get('level')} for s in char_skills],
                       talents=[{'name': t.get('name'), 'level': t.get('level'), 'type': t.get('type')}
