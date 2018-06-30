@@ -17,8 +17,8 @@ Item = namedtuple('Item', 'name category type grip rarity bonus damage range val
 Tier = namedtuple('Tier', ['descriptions', 'description_at_end', 'rarity', 'bonus_modifier', 'damage_modifier',
                            'value_multiplier', 'required_properties', 'required_attributes', 'added_attributes',
                            'weight_multiplier', 'armor_modifier', 'removed_attributes', 'creator_race',
-                           'creator_profession', 'is_artifact', 'myth', 'perk', 'drawback', 'name_beginnings', 'name_endings',
-                           'creator_named_item', 'skill_type'])
+                           'creator_profession', 'is_artifact', 'myth', 'perk', 'drawback', 'name_beginnings',
+                           'name_endings', 'creator_named_item', 'skill_type'])
 Skill = namedtuple('Skill', 'name type')
 
 SKILLS = [Skill(name=s.get('name'), type=s.get('attribute')) for s in char_data['skills']]
@@ -29,6 +29,7 @@ CURRENCIES = {denomination: currency for denomination, currency in item_data['mo
 ITEM_WEIGHTS = item_data['carry_weights']
 
 WEAPONS = [weapon for weapon in item_data['equipment']['weapons']]
+TOOLS = [tool for tool in item_data['equipment']['tools']]
 ARMOR_LISTS = {armor_type: armor_list for armor_type, armor_list in item_data['equipment']['armors'].items()}
 ARMORS = []
 for armor_list in ARMOR_LISTS.values():
@@ -52,17 +53,20 @@ TIER_WEIGHTS = {'cheap': CHEAP_TIER_WEIGHTS, 'valuable': VALUABLE_TIER_WEIGHTS, 
 CHEAP_ITEMS = {
     'treasure': [treasure for treasure in TREASURES if treasure.get('value_in_copper') < CHEAP_COPPER_LIMIT],
     'armor': [armor for armor in ARMORS if armor.get('value_in_copper') < CHEAP_COPPER_LIMIT],
-    'weapon': [weapon for weapon in WEAPONS if weapon.get('value_in_copper') < CHEAP_COPPER_LIMIT]}
+    'weapon': [weapon for weapon in WEAPONS if weapon.get('value_in_copper') < CHEAP_COPPER_LIMIT],
+    'tool': [tool for tool in TOOLS if tool.get('value_in_copper') < CHEAP_COPPER_LIMIT]}
 
 VALUABLE_ITEMS = {
     'treasure': [treasure for treasure in TREASURES if treasure.get('value_in_copper') < VALUABLE_COPPER_LIMIT],
     'armor': [armor for armor in ARMORS if armor.get('value_in_copper') < VALUABLE_COPPER_LIMIT],
-    'weapon': [weapon for weapon in WEAPONS if weapon.get('value_in_copper') < VALUABLE_COPPER_LIMIT]}
+    'weapon': [weapon for weapon in WEAPONS if weapon.get('value_in_copper') < VALUABLE_COPPER_LIMIT],
+    'tool': [tool for tool in TOOLS if tool.get('value_in_copper') < VALUABLE_COPPER_LIMIT]}
 
 PRECIOUS_ITEMS = {
     'treasure': [treasure for treasure in TREASURES],
     'armor': [armor for armor in ARMORS],
-    'weapon': [weapon for weapon in WEAPONS]}
+    'weapon': [weapon for weapon in WEAPONS],
+    'tool': [tool for tool in TOOLS]}
 
 ITEM_VALUES = {'cheap': CHEAP_ITEMS, 'valuable': VALUABLE_ITEMS, 'precious': PRECIOUS_ITEMS}
 
@@ -96,6 +100,7 @@ def generate_item(item_type, item_value='cheap'):
     if item_type.lower() not in list(ITEM_VALUES.get(item_value).keys()):
         item_type = random.choice(list(ITEM_VALUES.get(item_value).keys()))
     t1 = time.time()
+
     tiers = TIERS.get(weighted_random.weighted_random_choice(TIER_WEIGHTS.get(item_value)))
     items = ITEM_VALUES.get(item_value).get(item_type.lower())
 
@@ -105,7 +110,13 @@ def generate_item(item_type, item_value='cheap'):
 
     item_properties= item.get('properties')
     item_attributes = item.get('attributes')
-    item_tier = get_tier(item_properties, tiers)
+
+    if not item.get('ignore_tier'):
+        item_tier = get_tier(item_properties, tiers)
+    else:
+        tiers = TIERS.get('common')
+        item_tier = get_tier(item_properties, tiers)
+
     item_weight = get_item_weight(item, item_tier)
     item_attributes = get_item_attributes(item_attributes, item_tier, item_weight)
 
@@ -263,17 +274,17 @@ def get_item_attributes(attributes, tier, weight):
     if tier.removed_attributes and item_attributes is not None:
         item_attributes = list(set(item_attributes) - (set(tier.removed_attributes)))
     if item_attributes is not None and weight != ITEM_WEIGHTS.get('0') and weight != ITEM_WEIGHTS.get('1'):
-        if len(item_attributes) > 0:
+        if len(item_attributes) > 0 and len(weight) > 1:
             item_attributes.insert(0, ITEM_WEIGHTS.get('2')) \
                 if weight not in ITEM_WEIGHTS.values() else item_attributes.insert(0, weight)
-        else:
+        elif len(weight) > 1:
             item_attributes.append(ITEM_WEIGHTS.get('2')) \
                 if weight not in ITEM_WEIGHTS.values() else item_attributes.append(weight)
     return item_attributes
 
 
-item = generate_item('any', item_value='precious')
-print(f'Föremål: {item.name.capitalize()}')
+item = generate_item('tool')
+print(f'Föremål: {item.name.title()}')
 print(f'Typ: {item.type.title()} {("(" + item.grip.upper() + ")") if item.grip else ""}')
 if item.range:
     print(f'Räckvidd: {item.range.title()}')
