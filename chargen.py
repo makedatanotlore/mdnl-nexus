@@ -1,14 +1,15 @@
 import random
 import time
 from collections import namedtuple
-import data_loader
-import weighted_random
+from . import data_loader
+from . import weighted_random
 
 char_data = data_loader.init_data('char_data.json')
-Adventurer = namedtuple('Adventurer', 'name title race age renown profession attributes skills talents')
+Adventurer = namedtuple('Adventurer', 'name title race age renown profession attributes skills talents personality')
 Race = namedtuple('Race', 'name ages attribute professions talent compound')
 Age = namedtuple('Age', 'name weight renown attribute_points skill_points talent_points')
 Profession = namedtuple('Profession', 'name attribute skills talents definite')
+Personality = namedtuple('Personality', 'trait like dislike')
 
 
 def parse_attributes():
@@ -147,6 +148,11 @@ def create_adventurer(requested_race=None, requested_profession=None):
 
         return assign_points(age.talent_points, char_talents, 3, talent_weights)
 
+    def get_personality():
+        like, dislike = random.sample(list(set(char_data['personalities']['things'])), 2)
+        trait = random.choice(list(set(char_data['personalities']['traits'])))
+        return Personality(trait=trait, like=like, dislike=dislike)
+
     def get_name(race):
         def generate_name():
             try:
@@ -220,7 +226,8 @@ def create_adventurer(requested_race=None, requested_profession=None):
                       attributes=[{'name': a.get('name'), 'level': a.get('level')} for a in char_attributes],
                       skills=[{'name': s.get('name'), 'level': s.get('level')} for s in char_skills],
                       talents=[{'name': t.get('name'), 'level': t.get('level'), 'type': t.get('type')}
-                               for t in char_talents])
+                               for t in char_talents],
+                      personality=get_personality())
 
 
 if __name__ == '__main__':
