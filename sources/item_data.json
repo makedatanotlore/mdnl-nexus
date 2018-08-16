@@ -20,6 +20,7 @@
       "name": "inget"
     }},
   "carry_weights": {
+    "-1": "-",
     "0": "småsak",
     "0.5": "lätt",
     "1": "normal",
@@ -470,7 +471,8 @@
         "locations": ["body", "lair"],
         "value_in_copper": 36,
         "carry_weight": 1
-      }]},
+      }]
+  },
   "equipment": {
     "weapons": [
       {
@@ -964,7 +966,165 @@
           "attributes": ["speja -2"],
           "carry_weight": 1
         }]
-    }},
+    },
+    "tools": [
+      {
+        "name": "pilar med järnspets",
+        "indefinite": "plural",
+        "type": "bruksföremål",
+        "properties": ["metall", "trä", "spets"],
+        "value_in_copper": 12,
+        "attributes": ["ökar resurstärning pilar ett steg"],
+        "carry_weight": 1,
+        "ignore_tier": true
+      },{
+        "name": "pilar med träspets",
+        "indefinite": "plural",
+        "type": "bruksföremål",
+        "properties": ["trä", "spets"],
+        "value_in_copper": 6,
+        "attributes": ["ökar resurstärning pilar ett steg", "målets skyddsvärde fördubblas"],
+        "carry_weight": 1,
+        "ignore_tier": true
+      },{
+        "name": "pilar med spets av djurben",
+        "indefinite": "plural",
+        "type": "bruksföremål",
+        "properties": ["trä", "spets"],
+        "value_in_copper": 6,
+        "attributes": ["ökar resurstärning pilar ett steg", "målets skyddsvärde fördubblas"],
+        "carry_weight": 1,
+        "ignore_tier": true
+      },{
+        "name": "koger",
+        "indefinite": "ett",
+        "type": "bruksföremål",
+        "properties": ["läder"],
+        "value_in_copper": 8,
+        "attributes": ["räknas inte mot belastning"],
+        "carry_weight": -1
+      },{
+        "name": "änterhake",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["metall"],
+        "value_in_copper": 30,
+        "attributes": ["redskapsbonus +1 vid klättring"],
+        "carry_weight": 1
+      },{
+        "name": "rep, 10 meter",
+        "indefinite": "ett",
+        "type": "bruksföremål",
+        "properties": ["tyg"],
+        "value_in_copper": 20,
+        "attributes": ["redskapsbonus +1 vid klättring"],
+        "carry_weight": 1,
+        "ignore_tier": true
+      },{
+        "name": "talgljus",
+        "indefinite": "ett",
+        "type": "bruksföremål",
+        "properties": ["tyg", "talg"],
+        "value_in_copper": 6,
+        "attributes": ["lyser upp inom armslängds avstånd under ett kvartsdygn"],
+        "carry_weight": 0,
+        "ignore_tier": true
+      },{
+        "name": "oljelampa",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["metall", "sten"],
+        "value_in_copper": 5,
+        "attributes": ["lyser upp en zon inomhus", "kräver lampolja"],
+        "carry_weight": 0.5,
+        "ignore_tier": true
+      },{
+        "name": "oljelampa",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["metall"],
+        "value_in_copper": 20,
+        "attributes": ["lyser upp en zon", "kräver lampolja"],
+        "carry_weight": 0.5,
+        "ignore_tier": true
+      },{
+        "name": "facklor",
+        "indefinite": "plural",
+        "type": "bruksföremål",
+        "properties": ["trä"],
+        "value_in_copper": 5,
+        "attributes": ["ökar resurstärning facklor ett steg", "lyser upp en zon", "slå resurstärning varje kvartstimme"],
+        "carry_weight": 1,
+        "ignore_tier": true
+      },{
+        "name": "säck",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["tyg", "läder"],
+        "value_in_copper": 8,
+        "attributes": ["räknas inte mot belastning"],
+        "carry_weight": -1
+      },{
+        "name": "ryggsäck",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["tyg", "läder"],
+        "value_in_copper": 40,
+        "attributes": ["räknas inte mot belastning"],
+        "carry_weight": -1
+      },{
+        "name": "vattenskinn",
+        "indefinite": "ett",
+        "type": "bruksföremål",
+        "properties": ["läder"],
+        "value_in_copper": 30,
+        "attributes": ["krävs för att bära med sig vatten", "räknas inte mot belastning"],
+        "carry_weight": -1
+      },{
+        "name": "ett dussin tygförband",
+        "indefinite": "plural",
+        "type": "bruksföremål",
+        "properties": ["tyg"],
+        "value_in_copper": 6,
+        "attributes": ["redskapsbonus +1 på Läkekonst"],
+        "carry_weight": 0.5,
+        "ignore_tier": true
+      },{
+        "name": "lampolja",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["talg"],
+        "value_in_copper": 2,
+        "attributes": ["nog för ett kvartsdygn"],
+        "carry_weight": 0.5,
+        "ignore_tier": true
+      },{
+        "name": "filt",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["tyg"],
+        "value_in_copper": 7,
+        "attributes": ["redskapsbonus +1 mot kyla"],
+        "carry_weight": 0.5
+      },{
+        "name": "sovfäll",
+        "indefinite": "en",
+        "type": "bruksföremål",
+        "properties": ["päls"],
+        "value_in_copper": 30,
+        "attributes": ["redskapsbonus +2 mot kyla"],
+        "carry_weight": 1
+      },{
+        "name": "dyrkar",
+        "indefinite": "plural",
+        "type": "bruksföremål",
+        "properties": ["metall"],
+        "value_in_copper": 100,
+        "attributes": ["redskapsbonus +1 till Fingerfärdighet vid låsdyrkning"],
+        "carry_weight": 0,
+        "ignore_tier": true
+      }
+    ]},
   "item_tiers": {
     "junk": [
       {
@@ -981,7 +1141,7 @@
         "value_multiplier": 0.5
       },{
         "descriptions": {"en": "böjd", "ett": "böjt", "plural": "böjda"},
-        "required_attributes": ["egg", "spets"],
+        "required_properties": ["egg", "spets"],
         "bonus_modifier": -1,
         "damage_modifier": -1,
         "armor_modifier": 0,
@@ -1005,7 +1165,8 @@
         "bonus_modifier": -3,
         "damage_modifier": -3,
         "armor_modifier": -10,
-        "value_multiplier": 0
+        "value_multiplier": 0,
+        "removed_attributes": ["redskapsbonus +2 mot kyla", "redskapsbonus +1 mot kyla"]
       },{
         "descriptions": {"en": "av brons", "ett": "av brons", "plural": "av brons"},
         "description_at_end": true,
@@ -1327,7 +1488,7 @@
         "creator_race": "dvärg",
         "creator_profession": "magiker",
         "myth": "Det sägs att {{ determiner }} ovanligt tunga {{ item_name }} skapades av stensångaren {{ creator_name }} som {{ creator_origin }}.",
-        "perk": "Artefakttärning T8. Bäraren kan slunga föremålet mot en fiende inom Kort avstånd som en lång handling. Attacken kräver ett lyckat slag för Skytte och gör vapenskada (eller skada lika med skyddsvärde om föremålet är en sköld). Oavsett om attacken lyckas eller inte, återvänder föremålet till bäraren efter attacken.",
+        "perk": "Artefakttärning T8. Bäraren kan slunga föremålet mot en fiende inom Kort avstånd som en lång handling. Attacken kräver ett lyckat slag för Skytte och gör vapenskada (eller skada lika med bonus om föremålet är en sköld). Oavsett om attacken lyckas eller inte, återvänder föremålet till bäraren efter attacken.",
         "drawback": "Föremålet är gjort av magisk sten och väger därför dubbelt så mycket som andra föremål av samma typ.",
         "required_properties": ["yxa", "hammare", "sköld"],
         "bonus_modifier": 1,
@@ -1383,8 +1544,8 @@
         "name_endings": ["locke", "näcke", "tråne"],
         "creator_profession": "nasare",
         "myth": "Det sägs att {{ determiner }} vackra {{ item_name }} smiddes åt {{ race_compound }}{{ profession_definite }} {{ creator_name }} som {{ creator_origin }}.",
-        "perk": "Artefakttärning T8. Föremålet ger bäraren möjlighet att lägga till en T8 artefakttärning på slag för att {{ skill }}.",
-        "drawback": "Den magiska men mörka magi som smycket utsöndrar tär på bärarens själ. Varje gång ett slag för att {{ skill }} lyckas tar bäraren 1 poäng skada på KAR.",
+        "perk": "Föremålet ger bäraren +1 på slag för {{ skill }}.",
+        "drawback": "Den mäktiga men mörka magi som smycket utsöndrar tär på bärarens själ. Varje gång ett slag för {{ skill }} lyckas tar bäraren 1 poäng skada på KAR.",
         "required_properties": ["smycke"],
         "bonus_modifier": 1,
         "damage_modifier": 0,
@@ -1459,16 +1620,16 @@
         "value_multiplier": 30
       },{
         "is_artifact": true,
-        "name_beginnings": ["stål", "skal", "sköld", "pansar", "värn", "kant", "hörn", "marg", "bard"],
+        "name_beginnings": ["stål", "värn", "kant", "hörn", "marg", "bard", "kniv", "sabel", "studs"],
         "name_endings": ["skärme", "brätte", "skygge", "sarge", "bryne", "fäste", "spjärne", "rote"],
         "creator_profession": "krigare",
         "myth": "Det sägs att {{ determiner }} {{ item_name }} smiddes åt {{ race_compound }}{{ profession_definite }} {{ creator_name }} som {{ creator_origin }}.",
-        "perk": "Artefakttärning T8. Sköldbucklan i mitten av skölden ",
-        "drawback": "Vapnets magiskt höga temperatur gör att det lättare tar skada. Närhelst vapnets bonus sänks på grund av ett pressat slag, reduceras bonusen ytterligare ett steg.",
+        "perk": "Artefakttärning T8. Sköldens kant är ovanligt vass. Som en lång handling kan bäraren kasta skölden mot en fiende inom Kort avstånd. För att träffa ett mål krävs ett lyckat slag för Skytte, och attacken gör vapenskada lika med sköldens bonus. Om attacken lyckas studsar skölden till en slumpmässigt vald varelse inom Nära avstånd från det ursprungliga målet. Slå ett nytt slag för Skytte för varje nytt mål, men med -1 på slaget för varje tidigare studs. Om ett slag misslyckas faller skölden till marken.",
+        "drawback": "Skölden har i sin flykt inget sätt att skilja på vän eller fiende.",
         "required_properties": ["sköld"],
-        "bonus_modifier": 0,
+        "bonus_modifier": 1,
         "damage_modifier": 0,
-        "armor_modifier": 0,
+        "armor_modifier": 1,
         "value_multiplier": 30
       }]},
   "item_names": [
@@ -1489,8 +1650,8 @@
       "required_properties": ["smycke"],
       "name_endings": ["mynt", "smidde"]
     }],
-    "creator_origins": ["blev dödad av en demon", "stupade i jakten på en hydra", "gick under i ett magiskt experiment",
-      "vandrade in i blodsdimman och försvann", "stupade i en strid mot Zygofers demonstyrkor",
-      "försvann under mystiska omständigheter", "dödades av rostbröderna", "tillfångatogs av rostbröderna",
-      "stupade i jakten på en drake"]
+  "creator_origins": ["blev dödad av en demon", "stupade i jakten på en hydra", "gick under i ett magiskt experiment",
+    "vandrade in i blodsdimman och försvann", "stupade i en strid mot Zygofers demonstyrkor",
+    "försvann under mystiska omständigheter", "dödades av rostbröderna", "tillfångatogs av rostbröderna",
+    "stupade i jakten på en drake"]
 }
