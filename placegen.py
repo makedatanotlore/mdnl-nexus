@@ -4,6 +4,7 @@ from collections import namedtuple
 
 from . import data_loader
 from . import weighted_random
+from . import itemgen
 
 place_data = data_loader.init_data('place_data.json')
 creature_data = data_loader.init_data('creature_data.json')
@@ -19,14 +20,14 @@ Dungeon_Size = namedtuple('Dungeon_Size', 'name rooms')
 Fortress = namedtuple('Fortress', 'type name age size creator purpose history condition inhabitants oddity')
 Fortress_Size = namedtuple('Fortress_Size', 'name size min_garrison max_garrison')
 
-Room = namedtuple('Room', 'type doors traps treasures creatures')
-Door = namedtuple('Door', 'status trapped')
-Chest = namedtuple('Chest', 'name trapped contents')
-Treasure = namedtuple('Treasure', 'bane value weight')
+Room = namedtuple('Room', 'type doors traps treasures monsters oddity')
+Door = namedtuple('Door', 'name trap status')
+Treasure = namedtuple('Treasure', 'name contents trap')
 Trap = namedtuple('Trap', 'name effect victim')
 
 Origin = namedtuple('Origin', 'creator purpose reason history')
 Age = namedtuple('Age', 'name years')
+
 
 
 def create_village():
@@ -68,14 +69,17 @@ def create_village():
     institution_weights = {inst['name']: inst['weight'] for inst in place_data['villages']['institutions']}
     number_of_institutions = random.randint(place_size['min_institutions'], place_size['max_institutions'])
     for _ in range(number_of_institutions):
-        institution = weighted_random.weighted_random_choice(institution_weights)
-        institution_type = [inst['type'] for inst in place_data['villages']['institutions']
-                            if inst['name'] == institution][0]
+        all_institutions = {inst['name']: inst for inst in place_data['villages']['institutions']}
+        institution = all_institutions[weighted_random.weighted_random_choice(institution_weights)]
 
-        if institution_type == "tavern":
+        if institution.get('type') == "tavern":
             institutions.append(create_tavern())
-        elif institution_type != "none":
-            institutions.append(Institution(name=institution, type=institution_type))
+        elif institution.get('type'):
+            if institution.get('specializations'):
+                institution_name = f'{institution["name"]} ({random.choice(institution.get("specializations"))})'
+            else:
+                institution_name = institution['name']
+            institutions.append(Institution(name=institution_name, type=institution['type']))
 
 
     place_name = get_name('villages')
@@ -211,6 +215,91 @@ def create_fortress():
     return fortress
 
 
+ROOM_TYPES = {type['name']: type for type in place_data['dungeons']['rooms']['types']}
+ROOM_CONTENTS = {content['name']: content for content in place_data['dungeons']['rooms']['contents']}
+ROOM_TREASURES = {treasure['name']: treasure for treasure in place_data['dungeons']['rooms']['treasures']}
+ROOM_TRAPS = {trap['name']: trap for trap in place_data['dungeons']['rooms']['traps']}
+ROOM_DOORS = {door['number']: door['weight'] for door in place_data['dungeons']['rooms']['entrances']}
+ROOM_DOOR_STATES = {state['name']: state for state in place_data['dungeons']['rooms']['entrance_states']}
+ROOM_MONSTERS = {monster['name']: monster['weight'] for monster in place_data['dungeons']['inhabitants']}
+
+
+def create_room():
+    def roll_door():
+        state = ROOM_DOOR_STATES[weighted_random.weighted_random_choice(door_weights)]
+        trap = None
+        if state.get('trapped'):
+            trap = roll_trap()
+        return Door(name=state.get('name'), trap=trap, status=state.get('status'))
+
+    def roll_treasure():
+        treasure_weights = {treasure['name']: treasure['weight'] for treasure in ROOM_TREASURES.values()}
+        treasure = ROOM_TREASURES[weighted_random.weighted_random_choice(treasure_weights)]
+        trap = None
+        if 0 < treasure.get('trap_chance') <= random.randint(1, 6):
+            trap = roll_trap()
+
+        items = []
+        max_weight = treasure.get('max_weight')
+        if max_weight is None:
+            max_weight = 100
+        for _ in range(0, treasure.get('simple_treasure_rolls')):
+            items.append(itemgen.generate_item(['any'], item_value='cheap', max_weight=max_weight))
+        for _ in range(0, treasure.get('valuable_treasure_rolls')):
+            items.append(itemgen.generate_item(['weapon', 'armor', 'treasure'], item_value='valuable', max_weight=max_weight))
+        for _ in range(0, treasure.get('precious_treasure_rolls')):
+            items.append(itemgen.generate_item(['weapon', 'armor', 'treasure'], item_value='precious', max_weight=max_weight))
+
+        return Treasure(name=treasure.get('name'), contents=items, trap=trap)
+
+    def roll_trap():
+        trap_weights = {trap['name']: trap['weight'] for trap in ROOM_TRAPS.values()}
+        trap = ROOM_TRAPS[weighted_random.weighted_random_choice(trap_weights)]
+        trap_effect = trap.get('effect')
+        if trap.get('effect_min'):
+            trap_effect = trap.get('effect').replace('{{ effect }}', str(random.randint(trap.get('effect_min'),
+                                                                                        trap.get('effect_max'))))
+        return Trap(name=trap.get('name'),
+                    effect=trap_effect,
+                    victim=trap.get('victim'))
+
+    type_weights = {type['name']: type['weight'] for type in ROOM_TYPES.values()}
+    room_type = ROOM_TYPES[weighted_random.weighted_random_choice(type_weights)]
+    door_amount = int(weighted_random.weighted_random_choice(ROOM_DOORS))
+    door_weights = {state['name']: state['weight'] for state in ROOM_DOOR_STATES.values()}
+
+    doors = []
+    for _ in range(0, door_amount):
+        doors.append(roll_door())
+
+    content_weights = {content['name']: content['weight'] for content in ROOM_CONTENTS.values()}
+
+    treasure = []
+    traps = []
+    monsters = []
+
+    if room_type.get('content_rolls') > 0:
+        for _ in range(0, room_type.get('content_rolls')):
+            room_content = ROOM_CONTENTS[weighted_random.weighted_random_choice(content_weights)]
+
+            roll = random.randint(1, 6)
+            if room_content.get('treasure_chance') >= roll:
+                treasure.append(roll_treasure())
+
+            if room_content.get('trapped'):
+                traps.append(roll_trap())
+
+            if room_content.get('inhabited'):
+                monsters.append(weighted_random.weighted_random_choice(ROOM_MONSTERS))
+
+    return Room(type=room_type.get('name'),
+                doors=doors,
+                traps=list(set(traps)),
+                treasures=treasure,
+                monsters=list(set(monsters)),
+                oddity=random.choice(place_data['dungeons']['oddities']))
+
+
 def get_age(place_type):
     age_weights = {age['name']: age['weight'] for age in place_data[place_type]['ages']}
     place_age = weighted_random.weighted_random_choice(age_weights)
@@ -245,3 +334,55 @@ def create_place(create_place_type=None):
         return place_types[create_place_type]()
     place_type = random.choice([place_type for place_type in place_types.values()])
     return place_type()
+
+
+"""room = create_room()
+print(room.type.capitalize())
+print('Egenhet ---')
+print(f'    {room.oddity.capitalize()}')
+print()
+if room.traps:
+    print('Fällor ---')
+    print(f'    Typ: {room.traps.name.capitalize()}')
+    print(f'    Effekt: {room.traps.effect.capitalize()}')
+    print(f'    Drabbar: {room.traps.victim.capitalize()}')
+    print()
+if room.doors:
+    print('Dörrar ---')
+    for door in room.doors:
+        print(f'    {door.name.capitalize()}')
+        if door.trap:
+            print(f'        Fälla:')
+            print(f'            Typ: {door.trap.name.capitalize()}')
+            print(f'            Effekt: {door.trap.effect.capitalize()}')
+            print(f'            Drabbar: {door.trap.victim.capitalize()}')
+    print()
+if room.treasures:
+    print('Skatter ---')
+    print(f'    {room.treasures.name.capitalize()}:')
+    for item in room.treasures.contents:
+        print(f'        {item.name.capitalize()}')
+        print(f'            Typ: {item.type.title()} {("(" + item.grip.upper() + ")") if item.grip else ""}')
+        if item.range:
+            print(f'            Räckvidd: {item.range.title()}')
+        if item.bonus is not None:
+            print(f'            Bonus: {item.bonus}')
+        if item.damage is not None:
+            print(f'            Skada: {item.damage}')
+        print(f'            Värde: {str(item.value).capitalize()} Vikt: {str(item.weight).capitalize()}')
+        if item.attributes:
+            print(f'            Egenskaper: {", ".join(item.attributes).capitalize()}')
+        if item.myth:
+            print(f'            Sägen: {item.myth}')
+            print(f'            Effekt: {item.perk}')
+            print(f'            Nackdel: {item.drawback}')
+    if room.treasures.trap:
+        print(f'    Fälla:')
+        print(f'        Typ: {room.treasures.trap.name.capitalize()}')
+        print(f'        Effekt: {room.treasures.trap.effect.capitalize()}')
+        print(f'        Drabbar: {room.treasures.trap.victim.capitalize()}')
+    print()
+if room.monsters:
+    print('Monster ---')
+    print(f'    {room.monsters.capitalize()}')
+    print()"""

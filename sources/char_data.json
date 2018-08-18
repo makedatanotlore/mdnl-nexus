@@ -46,8 +46,30 @@
     "attribute": "smidighet",
     "professions":["nasare", "jägare", "tjuv"],
     "talent": "lömsk",
-    "compound": "svartalfs"}
-],
+    "compound": "svartalfs"}],
+
+  "point_limits": {
+    "talents": {
+      "DEFAULT": 3
+    },
+    "attributes": {
+      "DEFAULT": 4,
+      "1": 5,
+      "2": 6
+    },
+    "skills": {
+      "DEFAULT": 1,
+      "1": 3
+    }},
+
+  "weights": {
+    "BASE": 1000,
+    "attributes": 700,
+    "skills": 800,
+    "professions": 900,
+    "talents": 700
+  },
+
 
   "ages": [
     {"name": "ung",
@@ -76,42 +98,75 @@
       "attribute": "intelligens",
       "skills": ["uthållighet", "överlevnad", "genomskåda", "läkekonst", "djurhantering"],
       "talents": ["helandets väg", "hamnskiftets väg", "synens väg"],
-      "definite": "druiden"},
+      "definite": "druiden",
+      "equipment": {
+        "set": [],
+        "random": []
+      }},
     {"name": "jägare",
       "attribute": "smidighet",
       "skills": ["smyga", "rörlighet", "skytte", "speja", "överlevnad"],
       "talents": ["djurets väg", "pilens väg", "skogens väg"],
-      "definite": "jägaren"},
+      "definite": "jägaren",
+      "equipment": {
+        "set": [],
+        "random": []
+      }},
     {"name": "krigare",
       "attribute": "styrka",
       "skills": ["styrkeprov", "uthållighet", "närkamp", "hantverk", "rörlighet"],
       "talents": ["klingans väg", "sköldens väg", "fiendens väg"],
-      "definite": "krigaren"},
+      "definite": "krigaren",
+      "equipment": {
+        "set": [],
+        "random": ["nitläder med öppen hjälm", "ringbrynja med täckt hjälm", "helrustning med tunnhjälm",
+          "nitläder", "ringbrynja", "helrustning"]
+      }},
     {"name": "magiker",
       "attribute": "intelligens",
       "skills": ["hantverk", "fingerfärdighet", "bildning", "genomskåda", "manipulera"],
       "talents": ["tecknets väg", "stenens väg", "blodets väg", "dödens väg"],
-      "definite": "magikern"},
+      "definite": "magikern",
+      "equipment": {
+        "set": [],
+        "random": ["stav", "kniv"]
+      }},
     {"name": "nasare",
       "attribute": "karisma",
       "skills": ["hantverk", "fingerfärdighet", "speja", "genomskåda", "manipulera"],
       "talents": ["guldets väg", "kappsäckens väg", "lögnens väg"],
-      "definite": "nasaren"},
+      "definite": "nasaren",
+      "equipment": {
+        "set": [],
+        "random": []
+      }},
     {"name": "ryttare",
       "attribute": "styrka",
       "skills": ["djurhantering", "skytte", "överlevnad", "närkamp", "uthållighet"],
       "talents": ["följeslagarens väg", "riddarens väg", "viddernas väg"],
-      "definite": "druiden"},
+      "definite": "ryttaren",
+      "equipment": {
+        "set": ["riddjur"],
+        "random": []
+      }},
     {"name": "skald",
       "attribute": "karisma",
-      "skills": ["uthållighet", "överlevnad", "genomskåda", "läkekonst", "djurhantering"],
+      "skills": ["bildning", "genomskåda", "manipulera", "skaldekonst", "läkekonst"],
       "talents": ["stämmans väg", "hymnens väg", "stridsropets väg"],
-      "definite": "skalden"},
+      "definite": "skalden",
+      "equipment": {
+        "set": [],
+        "random": ["lyra", "flöjt"]
+      }},
     {"name": "tjuv",
       "attribute": "smidighet",
       "skills": ["smyga", "rörlighet", "skytte", "speja", "överlevnad"],
       "talents": ["ansiktets väg", "giftets väg", "mördarens väg"],
-      "definite": "tjuven"}],
+      "definite": "tjuven",
+      "equipment": {
+        "set": [],
+        "random": []
+      }}],
 
   "attributes": [
     {"name": "styrka"},
@@ -212,8 +267,8 @@
       "type": "profession",
       "races": [],
       "professions": [],
-
       "skills": ["djurhantering"]},
+
     {"name": "synens väg",
       "type": "profession",
       "races": [],
@@ -224,18 +279,23 @@
       "type": "profession",
       "races": [],
       "professions": [],
-      "skills": ["djurhantering"]},
+      "skills": ["djurhantering"],
+      "equipment": ["djurkompanjon (björn)", "djurkompanjon (varg)", "djurkompanjon (räv)",
+        "djurkompanjon (vildsvin)", "djurkompanjon (hjort)", "djurkompanjon (hund)",
+        "djurkompanjon (katt)", "djurkompanjon (råtta)", "djurkompanjon (fladdermus)",
+        "djurkompanjon (korp)", "djurkompanjon (örn)", "djurkompanjon (orm)"]},
 
     {"name": "pilens väg",
       "type": "profession",
       "races": [],
       "professions": [],
-      "skills": ["skytte"]},
+      "skills": ["skytte"],
+      "equipment": ["kortbåge", "långbåge", "lätt armborst", "tungt armborst"]},
 
     {"name": "skogens väg",
       "type": "profession",
-      "races": [],
-      "professions": ["vargfolk"],
+      "races": ["vargfolk"],
+      "professions": [],
       "skills": ["överlevnad"]},
 
     {"name": "klingans väg",
@@ -424,6 +484,12 @@
       "professions": ["tjuv", "jägare", "skald", "nasare"],
       "skills": ["rörlighet"]},
 
+    {"name": "hammarkämpe",
+      "type": "general",
+      "races": [],
+      "professions": ["krigare"],
+      "skills": ["närkamp"]},
+
     {"name": "hotfull",
       "type": "general",
       "races": ["orch"],
@@ -517,7 +583,7 @@
     {"name": "skräddare",
       "type": "general",
       "races": [],
-      "professions": [],
+      "professions": ["nasare", "tjuv", "skald"],
       "skills": ["hantverk"]},
 
     {"name": "sköldkämpe",
@@ -534,8 +600,8 @@
 
     {"name": "smed",
       "type": "general",
-      "races": [],
-      "professions": [],
+      "races": ["dvärg"],
+      "professions": ["krigare"],
       "skills": ["hantverk"]},
 
     {"name": "smärttålig",
@@ -623,18 +689,14 @@
       "skills": ["läkekonst"]}
   ],
 
-  "weights":
-  {"main_weight": 95,
-    "attribute_weight": 85},
-
   "names": {"races": {
     "människa": {
       "name_beginnings": ["", "g", "h", "n", "s", "t", "b", "or", "p", "v", "gar", "hal", "nir", "sin", "tal", "bryn", "har",
         "pas", "ver", "garm", "nirm", "sind", "hard", "verg", "brun", "trynd", "trist", "al", "ar", "alg", "esg", "kor",
-        "fer", "d", "vald", "jon", "dav", "kar", "gand", "fron", "van", "greg", "sv", "trin", "val", "bar", "bor", "far",
+        "fer", "d", "vald", "jon", "dav", "kar", "gand", "fron", "van", "greg", "sv", "trin", "val", "bar", "bor",
         "mor", "tom", "man", "vill", "brynj", "vidst", "vild", "ulb", "had", "gyr", "hes", "h", "tib", "jossv", "jos",
         "er", "leif", "mar", "m", "r", "sl", "gr", "al", "ar", "at", "ang", "ung", "un", "b", "ern", "far", "en", "ebb",
-        "el", "ek"],
+        "el", "ek", "gor", "for", "dor", "tr", "l", "m", "ul", "al", "mul", "sal", "gr", "kar"],
       "name_middles": ["a", "e", "i", "o", "u"],
       "name_endings": ["","lda", "nde", "na", "ne", "de", "r", "vald", "nder", "der", "vil", "ling", "gorn", "na", "borg",
         "rod", "fer", "lf", "mund", "bald", "lb", "ld", "ster", "ter", "ver", "vor", "don", "son", "mar", "tan", "fan",
@@ -648,12 +710,13 @@
         "leg", "kor", "sil", "ill", "l", "sar", "kel", "th", "eth", "mel", "del", "vel", "val", "ral", "fen", "sarl", "sar",
         "far", "fard", "b", "rel", "mar", "lag", "gal", "th", "tal", "t", "bel", "gil", "al", "mer", "m", "am", "al", "alt",
         "z", "zax", "vax", "vex", "dor", "lin", "l", "d", "t", "z", "dax", "dr", "ath", "at", "uth", "atr", "al", "falk",
-        "fal", "far", "blat"],
-      "name_middles": ["a", "e", "i", "o", "ossa", "issa", "essa", "ela", "ena", "onda", "assa", "ero", "ami", "á", "y"],
+        "fal", "far", "blat", "syl", "lath", "ol"],
+      "name_middles": ["a", "e", "i", "o", "ossa", "issa", "essa", "ela", "ena", "onda", "assa", "ero", "ami", "y"],
       "name_endings": ["", "las", "vallia", "mi", "nella", "krond", "nar", "gello", "ne", "na", "nd", "nda", "nde", "dan",
         "din", "nk", "bos", "ran", "ren", "menor", "lur", "doral", "balar", "r", "nar", "horn", "vel", "s", "vera", "ni",
         "rill", "lanna", "rian", "wen", "hon", "ron", "th", "din", "lir", "han", "dis", "runnor", "med", "medor", "ros",
-        "rynnon", "rannon", "gara", "thia", "ronel", "handra", "born", "tera", "valla", "hlia", "dion", "fagus"],
+        "rynnon", "rannon", "gara", "thia", "ronel", "handra", "born", "tera", "valla", "hlia", "dion", "fagus", "nas",
+        "fas", "dos", "dis", "disa", "dosa", "fasa"],
       "title_beginnings": ["", "grön", "rubin", "ädel", "alf", "blomster", "ask", "ros", "himmel", "gräs", "moss", "äng",
         "dröm", "klar", "skön", "ek", "tall", "gran", "ved", "björk", "alm", "ask", "lönn", "rönn", "kastanj", "hassel",
         "frid", "morgon", "kvälls", "bris", "vit", "gredelin", "alv", "gren", "kvist"],
@@ -671,7 +734,7 @@
         "far", "fard", "b", "rel", "mar", "lag", "gal", "th", "tal", "t", "bel", "gil", "al", "mer", "m", "am", "al", "alt",
         "z", "zax", "vax", "vex", "dor", "lin", "l", "d", "t", "z", "dax", "dr", "ath", "at", "uth", "atr", "al", "falk",
         "fal", "far", "blat"],
-      "name_middles": ["a", "e", "i", "o", "ossa", "issa", "essa", "ela", "ena", "onda", "assa", "ero", "ami", "á", "y"],
+      "name_middles": ["a", "e", "i", "o", "ossa", "issa", "essa", "ela", "ena", "onda", "assa", "ero", "ami", "y"],
       "name_endings": ["", "lda", "nde", "na", "ne", "de", "r", "vald", "nder", "der", "vil", "ling", "gorn", "na", "borg",
         "rod", "fer", "lf", "mund", "bald", "lb", "ld", "ster", "ter", "ver", "vor", "don", "son", "mar", "tan", "fan",
         "nir", "mir", "d", "dir", "g", "din", "bur", "m", "ven", "fren", "fred", "lias", "tus", "vall", "bert", "lina",
@@ -689,13 +752,14 @@
       "name_beginnings": ["", "ham", "mag", "hill", "skor", "torb", "tor", "od", "trin", "bod", "gand", "gan", "har", "harg",
         "tyr", "w", "gim", "kil", "fil", "dil", "mil", "tir", "dir", "dor", "tor", "mor", "lor", "lar", "tar", "far", "sl",
         "sk", "skar", "hem", "hus", "haf", "harv", "rag", "h", "kog", "ber", "k", "gaml", "mer", "dor", "g", "m", "f", "b",
-        "keg", "fal", "t", "mun", "bal", "gr", "grim", "gram", "gor", "d", "m", "man", "far", "for", "fur", "far", "bi"],
+        "keg", "fal", "t", "mun", "bal", "gr", "grim", "gram", "gor", "d", "m", "man", "far", "for", "fur", "far", "bi",
+        "mor", "ragn", "magn", "urk", "durk", "dark"],
       "name_middles": ["u", "o", "e", "a", "i"],
       "name_endings": ["", "lfred", "nt", "ndi", "helda", "lda", "leva", "nea", "benia", "d", "lo", "man", "han", "mar",
         "gar", "verk", "li", "gan", "bjorn", "karl", "born", "n", "tin", "ten", "g", "di", "muk", "mom", "sem", "f", "na",
         "rek", "ban", "lun", "nok", "vuk", "ror", "fror", "bem", "run", "k", "sor", "ni", "fan", "lim", "ka", "bi", "lor",
         "fo", "ruk", "du", "din", "dun", "mar", "nrun", "ftor", "grin", "grit", "rit", "dur", "dar", "kar", "mar", "bod",
-        "björn", "dall", "sten", "rsten", "rri", "horn", "rn"],
+        "björn", "dall", "sten", "rsten", "rri", "horn", "rn", "din", "s"],
       "title_beginnings": ["", "hammar", "sköld", "mjöd", "berga", "jord", "järn", "tenn", "koppar", "brons", "hagel",
         "salt", "svamp", "sten", "skrov", "brun", "grå", "titan", "granit"],
       "title_endings": ["", "hammare", "sköld", "skölde", "berg", "smed", "smede", "hjälm", "väktare", "brygde", "brygd",
@@ -822,11 +886,33 @@
           "skarvare", "kvädare", "pipa", "dansare", "sång", "hymnare", "hymne", "rop", "lärka", "harpa", "vävare"]},
       "tjuv": {
         "title_beginnings": ["halv", "röd", "blod", "mask", "grav", "orm", "strup", "dolk", "kniv", "gift",
-          "natt", "stövel"],
+          "natt", "stövel", "lås", "smyg", "kall", "mörk"],
         "title_endings": ["öga", "råtta", "orm", "steg", "skugga", "finger", "tunga", "huva", "luva", "dolk", "kniv",
           "skärare", "skändare", "plundrare", "karvare", "snidare", "dyrkare", "ansikte", "stövel", "viskare", "garvare"]}},
     "banned": {
-      "names": [""],
-      "titles": ["svartansikte"]}
+      "names": [],
+      "titles": ["svartansikte", "vitansikte", "rödansikte", "mörkansikte"]}
+  },
+  "personalities": {
+    "traits": ["osjälvisk", "självupptagen", "självständig", "tillmötesgående", "renhjärtad", "schismatisk", "okänslig",
+      "rättfram", "omtänksam", "religiös", "spiritualistisk", "materialistisk", "egoistisk", "skeptisk", "medlidsam",
+      "hjärtlös", "självsäker", "blygsam", "pragmatisk", "romantisk", "idealistisk", "förlåtande",
+      "omedgörlig", "medgörlig", "oförsonlig", "försonlig", "girig", "optimistisk", "pessimistisk",
+      "kärleksfull", "pratsam", "hänsynslös", "världsvan", "tystlåten", "försiktig",
+      "hjälpsam", "skrytsam", "modig", "våldsam", "oförsiktig", "ridderlig", "introvert"],
+    "things": ["människor", "dvärgar", "alver", "halvalver", "halvlingar", "orcher", "svartalfer", "vargfolk",
+      "hästar", "hundar", "harpyor", "drakar", "vargar", "björnar", "blommor", "träd", "blodsdimman",
+      "demoner", "troll", "resar", "neslingar", "slagsmål", "tävlingar", "fåglar", "pengar", "ynkryggar",
+      "hjältar", "tjuvar", "magiker", "druider", "nasare", "ryttare", "krigare", "skalder", "jägare",
+      "reptilfolk", "flygödlor", "Rostbröderna", "magi", "Ormkyrkan", "Korpsystrarna", "Svartvingarna",
+      "Jungfrusyskonen", "vanväxare", "Gyllene grenen", "Savristarna", "Rödelöparna", "rasism",
+      "odöda", "tärningsspel", "vin", "grönsaker", "kött", "vapen", "mörker", "solsken", "värme", "kyla",
+      "vatten", "eld", "berg", "båtar", "regn", "fisk", "bröd", "stensång", "hamnskifte", "spådomar",
+      "symbolism", "blodsmagi", "dödsmagi", "musik", "myggor", "höjder", "ståtlighet", "pratkvarnar",
+      "svärd", "spjut", "pilbågar", "hammare", "yxor", "armborst", "knivar", "sägner", "aristokrater",
+      "droger", "mjöd", "matlagning", "sköldar", "rustningar", "vildsvin", "smärta", "blod",
+      "trånga utrymmen", "öppna landskap", "insekter", "råttor", "mjölk", "dans", "skytte",
+      "närkamp", "böcker", "kartor", "honung", "gult", "blått", "grönt", "rött", "svart", "vitt",
+      "gräs", "fester", "att gråta", "att skratta", "att simma", "äventyr", "smycken", "päls", "ost"]
   }
 }

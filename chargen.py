@@ -1,235 +1,278 @@
 import random
 import time
 from collections import namedtuple
-from . import data_loader
-from . import weighted_random
+from . import data_loader as dl
+from . import weighted_random as wr
 
-char_data = data_loader.init_data('char_data.json')
-Adventurer = namedtuple('Adventurer', 'name title race age renown profession attributes skills talents personality')
-Race = namedtuple('Race', 'name ages attribute professions talent compound')
-Age = namedtuple('Age', 'name weight renown attribute_points skill_points talent_points')
-Profession = namedtuple('Profession', 'name attribute skills talents definite')
-Personality = namedtuple('Personality', 'trait like dislike')
+# Initialize and load data from JSON file
+char_data = dl.init_data('char_data.json')
+
+# A character with attributes
+Character = namedtuple('Character', ['name', 'title', 'kin', 'profession', 'attributes', 'skills', 'talents',
+                                     'personality', 'age', 'renown'])
+
+# An age with attributes
+Age = namedtuple('Age', ['name', 'renown', 'attribute_points', 'skill_points',
+                         'talent_points'])
+
+# A kin (fantasy race) with attributes
+Kin = namedtuple('Kin', ['name', 'age_weights', 'compound', 'attribute',  'talent',
+                         'professions'])
+
+# A profession (class) with attributes
+Profession = namedtuple('Profession', ['name', 'attribute', 'skills', 'talents', 'definite'])
+
+Attribute = namedtuple('Attribute', ['name', 'level'])
+
+Skill = namedtuple('Skill', ['name', 'attribute', 'level'])
+
+Talent = namedtuple('Talent', ['name', 'type', 'level'])
+
+Personality = namedtuple('Personality', ['trait', 'like', 'dislike'])
 
 
-def parse_attributes():
-    return [{'name': a['name'], 'level': 2} for a in char_data['attributes']]
+# Return a dictionary of possible ages and their attributes
+# {'young': Age(name='young', base_renown=...)}
+def parse_ages():
+    ages = []
+    age_data = char_data.get('ages')
+    for age in age_data:
+        ages.append(Age(name=age.get('name'),
+                        renown=age.get('renown'),
+                        attribute_points=age.get('attribute_points'),
+                        skill_points=age.get('skill_points'),
+                        talent_points=age.get('talent_points')))
+    return {age.name: age for age in ages}
 
 
+# Return a dictionary of possible kins and their attributes
+# {'human': Kin(name='human', age_weights=...)}
+def parse_kins():
+    kins = []
+    kin_data = char_data.get('races')
+    for kin in kin_data:
+        kins.append(Kin(name=kin.get('name'),
+                        age_weights=kin.get('ages'),
+                        attribute=kin.get('attribute'),
+                        professions=kin.get('professions'),
+                        compound=kin.get('compound'),
+                        talent=kin.get('talent')))
+    return {kin.name: kin for kin in kins}
+
+
+# Return a dictionary of possible professions and their attributes
+# {'warrior': Profession(name='warrior', attribute=...)}
 def parse_professions():
-    return [Profession(name=p['name'],
-                       attribute=[a for a in attributes if a['name'] in p['attribute']][0],
-                       skills=[s for s in skills if s['name'] in p['skills']],
-                       talents=[t for t in talents if t['name'] in p['talents']],
-                       definite=p['definite']) for p in char_data['professions']]
+    professions = []
+    profession_data = char_data.get('professions')
+    for profession in profession_data:
+        professions.append(Profession(name=profession.get('name'),
+                                      attribute=profession.get('attribute'),
+                                      skills=profession.get('skills'),
+                                      talents=profession.get('talents'),
+                                      definite=profession.get('definite')))
+    return {profession.name: profession for profession in professions}
 
 
-def parse_skills():
-    return [{'name': s['name'],
-             'attribute': [a for a in attributes if a['name'] in s['attribute']][0],
-             'level': 0} for s in char_data['skills']]
+# Instantiate static lists/dicts of character options
+AGES = parse_ages()
+KINS = parse_kins()
+PROFESSIONS = parse_professions()
+ATTRIBUTES = char_data.get('attributes')
+SKILLS = {skill.get('name'): skill for skill in char_data.get('skills')}
+TALENTS = {talent.get('name'): talent for talent in char_data.get('talents')}
+POINT_LIMITS = char_data.get('point_limits')
+
+WEIGHTS = char_data.get('weights')
+BASE_WEIGHT = WEIGHTS.get('BASE')
+ATTRIBUTE_WEIGHT = WEIGHTS.get('attributes')
+SKILL_WEIGHT = WEIGHTS.get('skills')
+PROFESSION_WEIGHT = WEIGHTS.get('professions')
+TALENT_WEIGHT = WEIGHTS.get('talents')
 
 
-def parse_talents():
-    return [{'name': t['name'],
-             'type': t['type'],
-             'races': t['races'],
-             'professions': t['professions'],
-             'skills': t['skills'],
-             'level': 0} for t in char_data['talents']]
+def get_attributes(base_points, kin, profession):
+    points = base_points + random.randint(-1, 1)
+    attributes = {attribute.get('name'): 2 for attribute in ATTRIBUTES}
+    point_limits = {}
+    weights = {}
+
+    for attribute in attributes.keys():
+        # matches is the number of matching attributes with the main attribute of the kin and profession
+        # if they match, the point limit of the particular attribute will be higher
+        matches = len({kin.attribute} & {attribute}) + len({profession.attribute} & {attribute})
+        point_limit = POINT_LIMITS.get('attributes').get(str(matches))
+        point_limits[attribute] = point_limit if point_limit else POINT_LIMITS.get('attributes').get('DEFAULT')
+
+        # getting the weights of the different attributes depending on the number of matches
+        weights[attribute] = ATTRIBUTE_WEIGHT if matches > 0 else BASE_WEIGHT - ATTRIBUTE_WEIGHT
+
+    while points > 0 and len(weights.keys()) > 0:
+        attribute = wr.weighted_random_choice(weights)
+        if attributes[attribute] < point_limits[attribute]:
+            attributes[attribute] += 1
+            points -= 1
+        else:
+            del weights[attribute]
+
+    return [Attribute(name=key, level=value) for key, value in attributes.items()]
 
 
-def parse_races():
-    return [Race(name=r['name'],
-                 ages=[Age(name=a['name'],
-                           weight=r['ages'][a['name']],
-                           renown=a['renown'],
-                           attribute_points=a['attribute_points'],
-                           skill_points=a['skill_points'],
-                           talent_points=a['talent_points']) for a in char_data['ages'] if a['name'] in r['ages']],
-                 attribute=[a for a in attributes if a['name'] in r['attribute']][0],
-                 professions=[p for p in professions if p.name in r['professions']],
-                 talent=[t for t in talents if r['talent'] == t['name']][0],
-                 compound=r['compound']) for r in char_data['races']]
+def get_skills(base_points, profession):
+    points = base_points + random.randint(-1, 1)
+    skills = {skill.get('name'): 0 for skill in SKILLS.values()}
+    point_limits = {}
+    weights = {}
+
+    for skill in skills.keys():
+        # matches is the number of matching skills with the skills of the profession
+        # if matches, the higher the point limit of the particular skill
+        matches = len(set(profession.skills) & {skill})
+        point_limit = POINT_LIMITS.get('skills').get(str(matches))
+        point_limits[skill] = point_limit if point_limit else POINT_LIMITS.get('skills').get('DEFAULT')
+
+        # getting the weights of the different skills depending on the number of matches
+        weights[skill] = SKILL_WEIGHT if matches > 0 else BASE_WEIGHT - SKILL_WEIGHT
+
+    while points > 0 and len(weights.keys()) > 0:
+        skill = wr.weighted_random_choice(weights)
+        if skills[skill] < point_limits[skill]:
+            skills[skill] += 1
+            points -= 1
+        else:
+            del weights[skill]
+
+    return [Skill(name=key, level=value, attribute=SKILLS.get(key).get('attribute')) for key, value in skills.items()
+            if value > 0]
 
 
+def get_talents(base_points, kin, profession, skills):
+    points = base_points
+    talents = {kin.talent: 1}
 
-attributes = parse_attributes()
-skills = parse_skills()
-talents = parse_talents()
-professions = parse_professions()
-races = parse_races()
+    point_limit = POINT_LIMITS.get('talents').get('DEFAULT')
+    weights = {}
 
-# the main weight used for random selection
-# in regards to race, profession, and owned skills
-main_weight = char_data['weights']['main_weight']
+    for profession_talent in profession.talents:
+        talent = TALENTS.get(profession_talent)
+        matches = (len({kin.name} & set(talent.get('races'))) +
+                   len({profession.name} & set(talent.get('professions'))) +
+                   len(set(skills) & set(talent.get('skills'))))
+        weights[profession_talent] = TALENT_WEIGHT * matches if matches > 0 else BASE_WEIGHT - TALENT_WEIGHT
 
+    talents[wr.weighted_random_choice(weights)] = 1
 
-# returns a namedtuple of type Adventurer with randomly generated values
-def create_adventurer(requested_race=None, requested_profession=None):
-    t1 = time.time()
-    attributes = parse_attributes()
-    skills = parse_skills()
-    talents = parse_talents()
+    for talent in TALENTS.values():
+        if talent.get('type') == 'general':
+            matches = (len({kin.name} & set(talent.get('races'))) +
+                       len({profession.name} & set(talent.get('professions'))) +
+                       len(set(skills) & set(talent.get('skills'))))
+            weights[talent.get('name')] = TALENT_WEIGHT * matches if matches > 0 else BASE_WEIGHT - TALENT_WEIGHT
 
-    # assigns points in a dictionary using weighted random
-    def assign_points(points, choices, max_points, weights):
-        choices = choices.copy()
-        while points > 0:
-            chosen = weighted_random.weighted_random_choice(weights)
-            if char_race.attribute['name'] == chosen and \
-                    char_race.attribute['name'] == char_profession.attribute['name']:
-                max_points = 6
-            elif char_race.attribute['name'] == chosen or char_profession.attribute['name'] == chosen:
-                max_points = 5
+    while points > 0 and len(weights.keys()) > 0:
+        talent = wr.weighted_random_choice(weights)
+        if talents.get(talent):
+            if talents[talent] < point_limit:
+                talents[talent] += 1
+                points -= 1
             else:
-                max_points = max_points
-            for c in choices:
-                if c['name'] == chosen and c['level'] < max_points:
-                    c['level'] += 1
-                    points -= 1
-        return choices
+                del weights[talent]
+        else:
+            talents[talent] = 1
+            points -= 1
 
-    # returns an age based on the supplied race and its relative age weights
-    def get_age(ages):
-        chosen = weighted_random.weighted_random_choice({a.name: a.weight for a in ages})
-        return [a for a in ages if a.name == chosen][0]
+    return [Talent(name=key, level=value, type=TALENTS.get(key).get('type')) for key, value in talents.items()]
 
-    # returns a profession weighted in favor of the supplied race's typical professions
-    def get_profession(race):
-        profession_weights = {**{p.name: main_weight for p in professions if p in race.professions},
-                              **{p.name: 100 - main_weight for p in professions if p not in race.professions}}
-        chosen = weighted_random.weighted_random_choice(profession_weights)
-        return [p for p in professions if chosen == p.name][0]
 
-    # returns a dictionary of attributes with values weighted in favor of the
-    # supplied race and profession's main attributes
-    def get_attributes(race, age, profession):
-        attribute_weight = char_data['weights']['attribute_weight']
-        attribute_weights = {**{a['name']: attribute_weight for a in attributes if a['name'] == race.attribute['name']
-                                or a['name'] == profession.attribute['name']},
-                             **{a['name']: 100 - attribute_weight for a in attributes if
-                                a['name'] != race.attribute['name']
-                                and a['name'] != profession.attribute['name']}}
-        return assign_points(age.attribute_points, attributes, 4, attribute_weights)
+NAME_BITS = char_data.get('names')
 
-    # returns a dictionary of skills with values weighted in favor of the supplied profession's typical skills
-    def get_skills(age, profession):
-        skill_weights = {**{s['name']: main_weight for s in skills if
-                            s['name'] in [s['name'] for s in profession.skills]},
-                         **{s['name']: 100 - main_weight for s in skills if
-                            s['name'] not in [s['name'] for s in profession.skills]}}
-        return assign_points(age.skill_points, skills, 5, skill_weights)
 
-    # returns a dictionary of talents with value weights based on race, profession and character skills
-    def get_talents(race, age, profession):
-        def preferred(talent):
-            if race.name in talent.get('races') or \
-                    profession.name in talent.get('professions') or \
-                    len(set(talent.get('skills')) & set(owned_skills)) > 0:
-                return True
-            return False
+def get_character_name(kin: str):
+    name_beginnings = NAME_BITS.get('races').get(kin).get('name_beginnings')
+    name_middles = NAME_BITS.get('races').get(kin).get('name_middles')
+    name_endings = NAME_BITS.get('races').get(kin).get('name_endings')
 
-        owned_skills = [s.get('name') for s in char_skills if s.get('level') > 0]
-        char_talents = [t for t in talents if t.get('type') == "general" or
-                        t.get('name') in [t.get('name') for t in profession.talents] or
-                        t.get('name') == race.talent.get('name')]
+    def generate_name():
+        name = random.choice(name_beginnings) + random.choice(name_middles) + random.choice(name_endings)
 
-        talent_weights = {**{t.get('name'): main_weight for t in char_talents if preferred(t)},
-                          **{t.get('name'): 100 - main_weight for t in char_talents if not preferred(t)}}
-
-        profession_talent_weights = {talent: weight for talent, weight in talent_weights.items() if
-                                     talent in [t.get('name') for t in profession.talents]}
-        profession_talent = weighted_random.weighted_random_choice(profession_talent_weights)
-
-        for t in char_talents:
-            if t.get('name') == profession_talent or t.get('name') in race.talent.get('name'):
-                t['level'] += 1
-
-        return assign_points(age.talent_points, char_talents, 3, talent_weights)
-
-    def get_personality():
-        like, dislike = random.sample(list(set(char_data['personalities']['things'])), 2)
-        trait = random.choice(list(set(char_data['personalities']['traits'])))
-        return Personality(trait=trait, like=like, dislike=dislike)
-
-    def get_name(race):
-        def generate_name():
-            try:
-                name_beg = random.choice(list(set(char_data['names']['races'][race.name]['name_beginnings'])))
-                name_mid = random.choice(list(set(char_data['names']['races'][race.name]['name_middles'])))
-                name_end = random.choice(list(set(char_data['names']['races'][race.name]['name_endings'])))
-                return name_beg + name_mid + name_end
-            except KeyError:
-                print(f'ERROR - COULD NOT GET NAME DATA FOR RACE {race.name}')
-
-        name = generate_name()
-        while len(name) <= 2 or name in char_data['names']['banned']['names']:
+        while name in NAME_BITS.get('banned').get('names') or len(name) <= 2:
             name = generate_name()
+
         return name
 
-    def get_title(race, profession):
-        def generate_title():
-            title_beg = ''
-            title_end = ''
-            while (title_beg == title_end and title_end == '') or \
-                    (title_beg in title_end and title_beg != '') or \
-                    (title_end in title_beg and title_end != ''):
-                try:
-                    title_beg = random.choice(list(set(char_data['names']['races'][race.name]['title_beginnings'] +
-                                                       char_data['names']['professions'][profession.name]['title_beginnings'])))
-                    title_end = random.choice(list(set(char_data['names']['races'][race.name]['title_endings'] +
-                                                       char_data['names']['professions'][profession.name]['title_endings'])))
-                except KeyError:
-                    print(f'ERROR - COULD NOT GET NAME DATA FOR RACE {race.name} OR PROFESSION {profession.name}')
-            return title_beg + title_end
-        title = generate_title()
-        while title in char_data['names']['banned']['titles']:
+    return generate_name()
+
+
+def get_character_title(kin: str, profession: str):
+    title_beginnings = NAME_BITS.get('races').get(kin).get('title_beginnings') + \
+                       NAME_BITS.get('professions').get(profession).get('title_beginnings')
+    title_endings = NAME_BITS.get('races').get(kin).get('title_endings') + \
+                    NAME_BITS.get('professions').get(profession).get('title_endings')
+
+    def generate_title():
+        title = random.choice(title_beginnings) + random.choice(title_endings)
+
+        while title in NAME_BITS.get('banned').get('titles') or len(title) <= 2:
             title = generate_title()
-        # remove quadruple and triple letters in title
-        for c in title:
-            if c * 4 in title:
-                title = title.replace(f'{c*4}', c*2)
-            if c * 3 in title:
-                title = title.replace(f'{c*3}', c*2)
+
         return title
 
-    if requested_race:
-        char_race = [r for r in races if r.name == requested_race.lower()][0]
-    else:
-        char_race = random.choice(races)
+    return generate_title()
 
+
+PERSONALITIES = char_data.get('personalities')
+
+
+def get_personality():
+    trait = random.choice(PERSONALITIES.get('traits'))
+    like, dislike = random.sample(PERSONALITIES.get('things'), 2)
+
+    return Personality(trait=trait,
+                       like=like,
+                       dislike=dislike)
+
+
+def generate_character(requested_kin=None, requested_profession=None):
+    t1 = time.time()
+    # Get requested kin or choose a random one
+    if requested_kin:
+        kin = KINS.get(requested_kin)
+    else:
+        kin = random.choice(list(KINS.values()))
+
+    # Get a weighted random age depending on kin
+    age = AGES.get(wr.weighted_random_choice(kin.age_weights))
+
+    # Get requested kin or choose a random one based on kin
     if requested_profession:
-        char_profession = [p for p in professions if p.name == requested_profession.lower()][0]
+        profession = PROFESSIONS.get(requested_profession)
     else:
-        char_profession = get_profession(char_race)
+        profession_weights = {}
+        for profession in PROFESSIONS.values():
+            profession_weights[profession.name] = PROFESSION_WEIGHT if profession.name in kin.professions \
+                else BASE_WEIGHT - PROFESSION_WEIGHT
+        profession = PROFESSIONS.get(wr.weighted_random_choice(profession_weights))
 
-    char_age = get_age(char_race.ages)
-    char_renown = char_age.renown
-    char_attributes = get_attributes(char_race, char_age, char_profession)
-    char_skills = get_skills(char_age, char_profession)
-    char_talents = get_talents(char_race, char_age, char_profession)
-    char_name = get_name(char_race)
-    char_title = get_title(char_race, char_profession)
+    attributes = get_attributes(age.attribute_points, kin, profession)
+    skills = get_skills(age.skill_points, profession)
+    talents = get_talents(age.talent_points, kin, profession, skills)
+    name = get_character_name(kin.name)
+    title = get_character_title(kin.name, profession.name)
+    personality = get_personality()
+
+    character = Character(name=name,
+                          title=title,
+                          age=age,
+                          renown=age.renown,
+                          kin=kin,
+                          profession=profession,
+                          attributes=attributes,
+                          skills=skills,
+                          talents=talents,
+                          personality=personality)
 
     t2 = time.time() - t1
 
     print(f'character generated in {t2*1000} ms')
 
-
-    return Adventurer(name=char_name,
-                      title=char_title,
-                      race=char_race,
-                      age=char_age.name,
-                      renown=char_renown,
-                      profession=char_profession,
-                      attributes=[{'name': a.get('name'), 'level': a.get('level')} for a in char_attributes],
-                      skills=[{'name': s.get('name'), 'level': s.get('level')} for s in char_skills],
-                      talents=[{'name': t.get('name'), 'level': t.get('level'), 'type': t.get('type')}
-                               for t in char_talents],
-                      personality=get_personality())
-
-
-if __name__ == '__main__':
-    for _ in range(0, 1000):
-        cool = create_adventurer()
+    return character

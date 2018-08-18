@@ -3,9 +3,9 @@ import random
 import time
 from collections import namedtuple
 
-import data_loader
-import weighted_random
-import chargen
+from . import data_loader
+from . import weighted_random
+from . import chargen
 
 item_data = data_loader.init_data('item_data.json')
 char_data = data_loader.init_data('char_data.json')
@@ -18,7 +18,7 @@ Tier = namedtuple('Tier', ['descriptions', 'description_at_end', 'rarity', 'bonu
                            'value_multiplier', 'required_properties', 'required_attributes', 'added_attributes',
                            'weight_multiplier', 'armor_modifier', 'removed_attributes', 'creator_race',
                            'creator_profession', 'is_artifact', 'myth', 'perk', 'drawback', 'name_beginnings',
-                           'name_endings', 'creator_named_item', 'skill_type'])
+                           'name_endings', 'creator_named_item', 'skill_type', 'value_modifier'])
 Skill = namedtuple('Skill', 'name type')
 
 SKILLS = [Skill(name=s.get('name'), type=s.get('attribute')) for s in char_data['skills']]
@@ -45,9 +45,9 @@ for treasure_list in TREASURE_LISTS.values():
 CHEAP_COPPER_LIMIT = 100
 VALUABLE_COPPER_LIMIT = 400
 
-CHEAP_TIER_WEIGHTS = {'junk': 8, 'common': 2}
-VALUABLE_TIER_WEIGHTS = {'junk': 5, 'common': 75, 'uncommon': 20}
-PRECIOUS_TIER_WEIGHTS = {'common': 5, 'uncommon': 65, 'rare': 30, 'epic': 100}
+CHEAP_TIER_WEIGHTS = {'junk': 70, 'common': 30}
+VALUABLE_TIER_WEIGHTS = {'common': 60, 'uncommon': 40}
+PRECIOUS_TIER_WEIGHTS = {'uncommon': 45, 'rare': 53, 'epic': 2}
 TIER_WEIGHTS = {'cheap': CHEAP_TIER_WEIGHTS, 'valuable': VALUABLE_TIER_WEIGHTS, 'precious': PRECIOUS_TIER_WEIGHTS}
 
 CHEAP_ITEMS = {
@@ -92,23 +92,37 @@ TIERS = {tier: [Tier(
     name_endings=subtier.get('name_endings'),
     creator_named_item=subtier.get('creator_named_item'),
     skill_type=subtier.get('skill_type'),
-    is_artifact=subtier.get('is_artifact'))
+    is_artifact=subtier.get('is_artifact'),
+    value_modifier=subtier.get('value_modifier'))
     for subtier in item_data['item_tiers'][tier]] for tier in item_data['item_tiers']}
 
 
-def generate_item(item_type, item_value='cheap'):
-    if item_type.lower() not in list(ITEM_VALUES.get(item_value).keys()):
-        item_type = random.choice(list(ITEM_VALUES.get(item_value).keys()))
+def generate_item(item_types, item_value='cheap', max_weight=100):
     t1 = time.time()
 
+    print(f'requested item of type {item_types}')
+    item_type = random.choice(item_types)
+    print(list(ITEM_VALUES.get(item_value).keys()))
+    if item_type.lower() not in list(ITEM_VALUES.get(item_value).keys()):
+        item_type = random.choice(list(ITEM_VALUES.get(item_value).keys()))
+
+    if max_weight is None:
+        max_weight = 100
+
+    def get_item_list():
+        items = ITEM_VALUES.get(item_value).get(item_type.lower())
+        return [item for item in items if item.get('carry_weight') <= max_weight]
+
     tiers = TIERS.get(weighted_random.weighted_random_choice(TIER_WEIGHTS.get(item_value)))
-    items = ITEM_VALUES.get(item_value).get(item_type.lower())
 
-    item = random.choice(items)
-    print(item.get('name'))
-    print()
+    possible_items = get_item_list()
+    while not possible_items:
+        item_type = random.choice(list(ITEM_VALUES.get(item_value).keys()))
+        possible_items = get_item_list()
 
-    item_properties= item.get('properties')
+    item = random.choice(possible_items)
+
+    item_properties = item.get('properties')
     item_attributes = item.get('attributes')
 
     if not item.get('ignore_tier'):
@@ -126,8 +140,8 @@ def generate_item(item_type, item_value='cheap'):
     creator = None
 
     if item_tier.is_artifact:
-        creator = chargen.create_adventurer(requested_race=item_tier.creator_race,
-                                            requested_profession=item_tier.creator_profession)
+        creator = chargen.generate_character(requested_kin=item_tier.creator_race,
+                                             requested_profession=item_tier.creator_profession)
         creator_name = f'{creator.name.title()} {creator.title.title()}'
         item_myth = item_tier.myth.replace('{{ creator_name }}', creator_name)
         item_myth = item_myth.replace('{{ determiner }}',
@@ -152,8 +166,12 @@ def generate_item(item_type, item_value='cheap'):
     else:
         item_damage = None
     if item.get('bonus'):
-        item_bonus = (item.get('bonus') + item_tier.bonus_modifier
-                      if item.get('bonus') + item_tier.bonus_modifier >= 0 else 0)
+        if item_type == 'armor':
+            item_bonus = (item.get('bonus') + item_tier.armor_modifier
+                          if item.get('bonus') + item_tier.armor_modifier >= 0 else 0)
+        else:
+            item_bonus = (item.get('bonus') + item_tier.bonus_modifier
+                          if item.get('bonus') + item_tier.bonus_modifier >= 0 else 0)
     else:
         item_bonus = None
 
@@ -166,7 +184,7 @@ def generate_item(item_type, item_value='cheap'):
         bonus=item_bonus,
         damage=item_damage,
         range=item.get('range'),
-        value=get_total_value(item.get('value_in_copper'), item_tier.value_multiplier),
+        value=get_total_value(item.get('value_in_copper'), item_tier.value_multiplier, item_tier.value_modifier),
         weight=item_weight,
         attributes=item_attributes,
         myth=item_myth,
@@ -182,11 +200,12 @@ def get_tier(properties, tiers):
     tier = random.choice(tiers)
     if tier.required_properties:
         if not (len(set(tier.required_properties) & set(properties)) > 0):
+            print(f'- could not get tier (Properties: {properties}) - recursion!')
             tier = get_tier(properties, tiers)
     return tier
 
 
-def get_total_value(value, modifier, randomize_value=True):
+def get_total_value(value, multiplier, modifier, randomize_value=True):
     gold_value_in_copper = CURRENCIES['gold']['copper_value']
     silver_value_in_copper = CURRENCIES['silver']['copper_value']
     gold = CURRENCIES['gold']['name']
@@ -194,18 +213,21 @@ def get_total_value(value, modifier, randomize_value=True):
     copper = CURRENCIES['copper']['name']
     worthless = CURRENCIES['worthless']['name']
 
-    remaining_copper = value * modifier
+    if modifier:
+        remaining_copper = (value + modifier) * multiplier
+    else:
+        remaining_copper = value * multiplier
 
     if randomize_value:
-        min_value = int(remaining_copper * 0.75)
-        max_value = int(remaining_copper * 1.25)
+        min_value = int(remaining_copper * 0.9)
+        max_value = int(remaining_copper * 1.1)
         remaining_copper = random.randint(min_value, max_value)
 
     if remaining_copper > 0:
         total_value_in_gold = 0
         total_value_in_silver = 0
 
-        if remaining_copper > 500:
+        if remaining_copper > 1000:
             while remaining_copper - gold_value_in_copper >= 0:
                 total_value_in_gold += 1
                 remaining_copper -= gold_value_in_copper
@@ -268,7 +290,10 @@ def get_item_weight(item, tier, creator=None):
 
 
 def get_item_attributes(attributes, tier, weight):
-    item_attributes = attributes
+    if attributes is not None:
+        item_attributes = sorted(list(set(attributes)))
+    else:
+        item_attributes = attributes
     if tier.added_attributes and item_attributes is not None:
         item_attributes = list(set(item_attributes).union(set(tier.added_attributes)))
     if tier.removed_attributes and item_attributes is not None:
@@ -280,10 +305,11 @@ def get_item_attributes(attributes, tier, weight):
         elif len(weight) > 1:
             item_attributes.append(ITEM_WEIGHTS.get('2')) \
                 if weight not in ITEM_WEIGHTS.values() else item_attributes.append(weight)
+
     return item_attributes
 
 
-item = generate_item('tool')
+"""item = generate_item('tool')
 print(f'Föremål: {item.name.title()}')
 print(f'Typ: {item.type.title()} {("(" + item.grip.upper() + ")") if item.grip else ""}')
 if item.range:
@@ -297,19 +323,6 @@ if item.myth:
     print(f'Sägen: {item.myth}')
     print(f'Effekt: {item.perk}')
     print(f'Nackdel: {item.drawback}')
-print()
-
-""""armor = generate_armor(item_value='cheap')
-print(f'Rustning: {armor.name.capitalize()}')
-print(f'Typ: {armor.type.title()}')
-print(f'Skydd: {armor.bonus}')
-print(f'Värde: {str(armor.value).capitalize()} Vikt: {str(armor.weight).capitalize()}')
-print(f'Egenskaper: {", ".join(armor.attributes).capitalize()}')
-print()
-
-treasure = generate_treasure(item_value='cheap')
-print(f'Skatt: {treasure.name.capitalize()}')
-print(f'Typ: {treasure.type.title()}')
-print(f'Värde: {str(treasure.value).capitalize()} Vikt: {str(treasure.weight).capitalize()}')"""
+print()"""
 
 

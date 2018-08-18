@@ -197,18 +197,10 @@
         "name": "spelbräde",
         "indefinite": "ett",
         "type": "dekoration",
-        "properties": ["trä", "metall"],
+        "properties": ["trä"],
         "locations": ["lair"],
         "value_in_copper": 30,
         "carry_weight": 1
-      },{
-        "name": "vas",
-        "indefinite": "en",
-        "type": "dekoration",
-        "properties": ["glas", "metall"],
-        "locations": ["lair"],
-        "value_in_copper": 36,
-        "carry_weight": 0.5
       },{
         "name": "vas",
         "indefinite": "en",
@@ -240,12 +232,12 @@
         "properties": ["trä", "naturmaterial"],
         "locations": ["lair"],
         "value_in_copper": 25,
-        "carry_weight": 2
+        "carry_weight": 3
       },{
         "name": "karmstol",
         "indefinite": "en",
         "type": "dekoration",
-        "properties": ["trä", "metall", "naturmaterial"],
+        "properties": ["trä", "naturmaterial"],
         "locations": ["lair"],
         "value_in_copper": 30,
         "carry_weight": 3
@@ -285,7 +277,7 @@
         "name": "skrivbord",
         "indefinite": "ett",
         "type": "dekoration",
-        "properties": ["trä", "metall", "naturmaterial"],
+        "properties": ["trä", "naturmaterial"],
         "locations": ["lair"],
         "value_in_copper": 60,
         "carry_weight": 5
@@ -364,7 +356,7 @@
         "properties": ["ädelsten"],
         "locations": ["body", "lair"],
         "value_in_copper": 36,
-        "carry_weight": 1
+        "carry_weight": 0.5
       },{
         "name": "smaragd",
         "indefinite": "en",
@@ -372,7 +364,7 @@
         "properties": ["ädelsten"],
         "locations": ["body", "lair"],
         "value_in_copper": 36,
-        "carry_weight": 1
+        "carry_weight": 0.5
       },{
         "name": "diamant",
         "indefinite": "en",
@@ -430,7 +422,8 @@
         "properties": ["bok"],
         "locations": ["body", "lair"],
         "value_in_copper": 36,
-        "carry_weight": 1
+        "carry_weight": 1,
+        "attributes": ["redskapsbonus +1 vid framställning av mat"]
       },{
         "name": "bok om krigshistoria",
         "indefinite": "en",
@@ -440,13 +433,14 @@
         "value_in_copper": 36,
         "carry_weight": 1
       },{
-        "name": "bok med sångtexter",
+        "name": "sångbok",
         "indefinite": "en",
         "type": "bok",
         "properties": ["bok"],
         "locations": ["body", "lair"],
         "value_in_copper": 36,
-        "carry_weight": 1
+        "carry_weight": 1,
+        "attributes": ["redskapsbonus +1 till skaldekonst"]
       },{
         "name": "bok om örter",
         "indefinite": "en",
@@ -454,7 +448,8 @@
         "properties": ["bok"],
         "locations": ["body", "lair"],
         "value_in_copper": 36,
-        "carry_weight": 1
+        "carry_weight": 1,
+        "attributes": ["redskapsbonus +1 till att söka föda under utfärder"]
       },{
         "name": "bok om monster",
         "indefinite": "en",
@@ -470,7 +465,90 @@
         "properties": ["bok"],
         "locations": ["body", "lair"],
         "value_in_copper": 36,
-        "carry_weight": 1
+        "carry_weight": 1,
+        "attributes": ["redskapsbonus +1 vid kokning av gift"]
+      }],
+    "coins": [
+      {
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 5,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
+      },{
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 10,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
+      },{
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 20,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
+      },{
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 40,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
+      },{
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 80,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
+      },{
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 160,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
+      },{
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 320,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
+      },{
+        "name": "mynt",
+        "indefinite": "plural",
+        "type": "mynt",
+        "properties": ["metall"],
+        "locations": ["body", "lair"],
+        "value_in_copper": 640,
+        "carry_weight": -1,
+        "attributes": ["väger som mynt (spelarboken sid 35)"],
+        "ignore_tier": true
       }]
   },
   "equipment": {
@@ -996,14 +1074,6 @@
         "carry_weight": 1,
         "ignore_tier": true
       },{
-        "name": "koger",
-        "indefinite": "ett",
-        "type": "bruksföremål",
-        "properties": ["läder"],
-        "value_in_copper": 8,
-        "attributes": ["räknas inte mot belastning"],
-        "carry_weight": -1
-      },{
         "name": "änterhake",
         "indefinite": "en",
         "type": "bruksföremål",
@@ -1039,7 +1109,7 @@
         "carry_weight": 0.5,
         "ignore_tier": true
       },{
-        "name": "oljelampa",
+        "name": "oljelykta",
         "indefinite": "en",
         "type": "bruksföremål",
         "properties": ["metall"],
@@ -1056,22 +1126,6 @@
         "attributes": ["ökar resurstärning facklor ett steg", "lyser upp en zon", "slå resurstärning varje kvartstimme"],
         "carry_weight": 1,
         "ignore_tier": true
-      },{
-        "name": "säck",
-        "indefinite": "en",
-        "type": "bruksföremål",
-        "properties": ["tyg", "läder"],
-        "value_in_copper": 8,
-        "attributes": ["räknas inte mot belastning"],
-        "carry_weight": -1
-      },{
-        "name": "ryggsäck",
-        "indefinite": "en",
-        "type": "bruksföremål",
-        "properties": ["tyg", "läder"],
-        "value_in_copper": 40,
-        "attributes": ["räknas inte mot belastning"],
-        "carry_weight": -1
       },{
         "name": "vattenskinn",
         "indefinite": "ett",
@@ -1157,7 +1211,7 @@
         "descriptions": {"en": "rostig", "ett": "rostigt", "plural": "rostiga"},
         "required_properties": ["metall"],
         "bonus_modifier": -1,
-        "damage_modifier": -1,
+        "damage_modifier": 0,
         "armor_modifier": -2,
         "value_multiplier": 0.25
       },{
@@ -1166,13 +1220,13 @@
         "damage_modifier": -3,
         "armor_modifier": -10,
         "value_multiplier": 0,
-        "removed_attributes": ["redskapsbonus +2 mot kyla", "redskapsbonus +1 mot kyla"]
+        "removed_attributes": ["redskapsbonus +2 mot kyla", "redskapsbonus +1 mot kyla", "redskapsbonus +1 vid klättring", "redskapsbonus +1 vid framställning av mat", "redskapsbonus +1 till skaldekonst", "redskapsbonus +1 till att söka föda under utfärder", "redskapsbonus +1 vid kokning av gift"]
       },{
         "descriptions": {"en": "av brons", "ett": "av brons", "plural": "av brons"},
         "description_at_end": true,
         "required_properties": ["metall"],
         "bonus_modifier": -1,
-        "damage_modifier": -1,
+        "damage_modifier": 0,
         "armor_modifier": -1,
         "value_multiplier": 0.5
       },{
@@ -1187,7 +1241,7 @@
         "descriptions": {"en": "ihoplappad", "ett": "ihoplappat", "plural": "ihoplappade"},
         "required_properties": ["tyg", "läder"],
         "bonus_modifier": -1,
-        "damage_modifier": -1,
+        "damage_modifier": 0,
         "armor_modifier": -1,
         "value_multiplier": 0.25
       },{
@@ -1235,7 +1289,8 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 0.25
+        "value_multiplier": 0.25,
+        "removed_attributes": ["redskapsbonus +1 vid framställning av mat", "redskapsbonus +1 till skaldekonst", "redskapsbonus +1 till att söka föda under utfärder", "redskapsbonus +1 vid kokning av gift"]
       },{
         "descriptions": {"en": "med flera utrivna sidor", "ett": "med flera utrivna sidor", "plural": "med flera utrivna sidor"},
         "description_at_end": true,
@@ -1243,14 +1298,16 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 0.5
+        "value_multiplier": 0.5,
+        "removed_attributes": ["redskapsbonus +1 vid framställning av mat", "redskapsbonus +1 till skaldekonst", "redskapsbonus +1 till att söka föda under utfärder", "redskapsbonus +1 vid kokning av gift"]
       },{
         "descriptions": {"en": "brandskadad", "ett": "brandskadat", "plural": "brandskadade"},
         "required_properties": ["bok", "tyg"],
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 0
+        "value_multiplier": 0,
+        "removed_attributes": ["redskapsbonus +1 vid framställning av mat", "redskapsbonus +1 till skaldekonst", "redskapsbonus +1 till att söka föda under utfärder", "redskapsbonus +1 vid kokning av gift"]
       }],
     "common": [
       {
@@ -1268,6 +1325,7 @@
         "damage_modifier": 0,
         "armor_modifier": 0,
         "value_multiplier": 1.25,
+        "value_modifier": 25,
         "added_attributes": ["redskapsbonus +1 mot kyla"]
       },{
         "descriptions": {"en": "broderad", "ett": "broderat", "plural": "broderade"},
@@ -1275,29 +1333,42 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 2
+        "value_multiplier": 1.25,
+        "value_modifier": 25
       },{
         "descriptions": {"en": "graverad", "ett": "graverat", "plural": "graverade"},
         "required_properties": ["trä", "metall"],
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 2
+        "value_multiplier": 1.25,
+        "value_modifier": 25
+      },{
+        "descriptions": {"en": "med ett skönt lädergrepp", "ett": "med ett skönt lädergrepp", "plural": "med ett skönt lädergrepp"},
+        "required_properties": ["svärd", "yxa"],
+        "description_at_end": true,
+        "bonus_modifier": 1,
+        "damage_modifier": 0,
+        "armor_modifier": 0,
+        "value_multiplier": 1.25,
+        "value_modifier": 25
       },{
         "descriptions": {"en": "välslipad", "ett": "välslipat", "plural": "välslipade"},
         "required_properties": ["metall"],
         "required_attributes": ["egg", "spets"],
-        "bonus_modifier": 0,
-        "damage_modifier": 1,
+        "bonus_modifier": 1,
+        "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 2
+        "value_multiplier": 1.25,
+        "value_modifier": 50
       },{
         "descriptions": {"en": "välsmidd", "ett": "välsmitt", "plural": "välsmidda"},
         "required_properties": ["metall"],
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 1,
-        "value_multiplier": 2
+        "value_multiplier": 1.5,
+        "value_modifier": 50
       },{
         "descriptions": {"en": "med silverdetaljer", "ett": "med silverdetaljer", "plural": "med silverdetaljer"},
         "description_at_end": true,
@@ -1305,7 +1376,8 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 2
+        "value_multiplier": 1.25,
+        "value_modifier": 50
       },{
         "descriptions": {"en": "av silver", "ett": "av silver", "plural": "av silver"},
         "description_at_end": true,
@@ -1313,7 +1385,8 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 5
+        "value_multiplier": 1.5,
+        "value_modifier": 75
       },{
         "descriptions": {"en": "med en bågsträng av älgsenor", "ett": "med en bågsträng av älgsenor", "plural": "med en bågsträng av älgsenor"},
         "description_at_end": true,
@@ -1321,7 +1394,7 @@
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 1
+        "value_multiplier": 1.1
       },{
         "descriptions": {"en": "av fint trä", "ett": "av fint trä", "plural": "av fint trä"},
         "description_at_end": true,
@@ -1329,28 +1402,31 @@
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 2
+        "value_multiplier": 1.25,
+        "value_modifier": 25
       },{
         "descriptions": {"en": "alvisk", "ett": "alviskt", "plural": "alviska"},
         "required_properties": ["metall", "trä", "läder", "pilbåge"],
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 1,
-        "value_multiplier": 2
+        "value_multiplier": 1.5,
+        "value_modifier": 75
       },{
         "descriptions": {"en": "dvärgisk", "ett": "dvärgiskt", "plural": "dvärgiska"},
         "required_properties": ["metall", "armborst"],
-        "bonus_modifier": 0,
-        "damage_modifier": 1,
+        "bonus_modifier": 1,
+        "damage_modifier": 0,
         "armor_modifier": 2,
-        "value_multiplier": 3,
+        "value_multiplier": 2,
+        "value_modifier": 100,
         "weight_multiplier": 1.5,
         "removed_attributes": ["halverat skyddsvärde mot pilar och stöt av vapen med spets"]
       },{
         "descriptions": {"en": "orchisk", "ett": "orchiskt", "plural": "orchiska"},
         "required_properties": ["metall", "armborst"],
-        "bonus_modifier": 0,
-        "damage_modifier": 1,
+        "bonus_modifier": 1,
+        "damage_modifier": 0,
         "armor_modifier": -1,
         "value_multiplier": 0.5,
         "removed_attributes": ["parerande"]
@@ -1368,6 +1444,7 @@
         "damage_modifier": 0,
         "armor_modifier": 0,
         "weight_multiplier": 2,
+        "value_modifier": 100,
         "value_multiplier": 2
       },{
         "descriptions": {"en": "vacker", "ett": "vackert", "plural": "vackra"},
@@ -1375,7 +1452,8 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 2
+        "value_multiplier": 2,
+        "value_modifier": 50
       },{
         "descriptions": {"en": "sällsynt", "ett": "sällsynt", "plural": "sällsynta"},
         "required_properties": ["bok"],
@@ -1390,6 +1468,13 @@
         "damage_modifier": 0,
         "armor_modifier": 0,
         "value_multiplier": 2
+      },{
+        "descriptions": {"en": "fin", "ett": "fint", "plural": "fina"},
+        "bonus_modifier": 1,
+        "damage_modifier": 0,
+        "armor_modifier": 1,
+        "value_multiplier": 1.25,
+        "value_modifier": 50
       }],
     "rare": [
       {
@@ -1398,8 +1483,8 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 7,
-        "weight_multiplier": 1.25
+        "value_multiplier": 1.75,
+        "value_modifier": 100
       },{
         "descriptions": {"en": "med gulddetaljer", "ett": "med gulddetaljer", "plural": "med gulddetaljer"},
         "description_at_end": true,
@@ -1407,7 +1492,8 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 3
+        "value_multiplier": 1.75,
+        "value_modifier": 100
       },{
         "descriptions": {"en": "med guldbrodyr", "ett": "med guldbrodyr", "plural": "med guldbrodyr"},
         "description_at_end": true,
@@ -1415,30 +1501,34 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 3
+        "value_multiplier": 1.75,
+        "value_modifier": 75
       },{
         "descriptions": {"en": "mästersmidd", "ett": "mästersmitt", "plural": "mästersmidda"},
         "required_properties": ["metall"],
-        "bonus_modifier": 1,
-        "damage_modifier": 1,
+        "bonus_modifier": 2,
+        "damage_modifier": 0,
         "armor_modifier": 2,
-        "value_multiplier": 5
+        "value_multiplier": 2,
+        "value_modifier": 125
       },{
         "descriptions": {"en": "med en bågsträng av enhörningshår", "ett": "med en bågsträng av enhörningshår", "plural": "med en bågsträng av enhörningshår"},
         "description_at_end": true,
         "required_properties": ["pilbåge"],
-        "bonus_modifier": 1,
-        "damage_modifier": 1,
+        "bonus_modifier": 2,
+        "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 3
+        "value_multiplier": 2,
+        "value_modifier": 100
       },{
         "descriptions": {"en": "med ett grepp av drakben", "ett": "med ett grepp av drakben", "plural": "med ett grepp av drakben"},
         "description_at_end": true,
         "required_properties": ["svärd"],
-        "bonus_modifier": 1,
+        "bonus_modifier": 2,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 3
+        "value_multiplier": 2,
+        "value_modifier": 100
       },{
         "descriptions": {"en": "med inlagda ädelstenar", "ett": "med inlagda ädelstenar", "plural": "med inlagda ädelstenar"},
         "description_at_end": true,
@@ -1446,24 +1536,27 @@
         "bonus_modifier": 0,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 5
+        "value_multiplier": 2,
+        "value_modifier": 100
       },{
         "descriptions": {"en": "av drakben", "ett": "av drakben", "plural": "av drakben"},
         "description_at_end": true,
         "required_properties": ["naturmaterial"],
-        "bonus_modifier": 1,
-        "damage_modifier": 2,
+        "bonus_modifier": 2,
+        "damage_modifier": 0,
         "armor_modifier": 2,
-        "value_multiplier": 10,
-        "weight_multiplier": 1.25
+        "value_multiplier": 2,
+        "weight_multiplier": 1.25,
+        "value_modifier": 100
       },{
         "descriptions": {"en": "av drakskinn", "ett": "av drakskinn", "plural": "av drakskinn"},
         "description_at_end": true,
         "required_properties": ["läder"],
         "bonus_modifier": 2,
-        "damage_modifier": 1,
+        "damage_modifier": 0,
         "armor_modifier": 2,
-        "value_multiplier": 5
+        "value_multiplier": 2,
+        "value_modifier": 100
       },{
         "descriptions": {"en": "enorm", "ett": "enormt", "plural": "enorma"},
         "required_properties": ["ädelsten"],
@@ -1471,7 +1564,8 @@
         "damage_modifier": 0,
         "armor_modifier": 0,
         "weight_multiplier": 4,
-        "value_multiplier": 5
+        "value_modifier": 250,
+        "value_multiplier": 2
       },{
         "descriptions": {"en": "mycket sällsynt", "ett": "mycket sällsynt", "plural": "mycket sällsynta"},
         "required_properties": ["bok"],
@@ -1491,10 +1585,11 @@
         "perk": "Artefakttärning T8. Bäraren kan slunga föremålet mot en fiende inom Kort avstånd som en lång handling. Attacken kräver ett lyckat slag för Skytte och gör vapenskada (eller skada lika med bonus om föremålet är en sköld). Oavsett om attacken lyckas eller inte, återvänder föremålet till bäraren efter attacken.",
         "drawback": "Föremålet är gjort av magisk sten och väger därför dubbelt så mycket som andra föremål av samma typ.",
         "required_properties": ["yxa", "hammare", "sköld"],
-        "bonus_modifier": 1,
-        "damage_modifier": 1,
-        "armor_modifier": 1,
-        "value_multiplier": 30,
+        "bonus_modifier": 2,
+        "damage_modifier": 0,
+        "armor_modifier": 2,
+        "value_multiplier": 2,
+        "value_modifier": 400,
         "weight_multiplier": 2
       },{
         "is_artifact": true,
@@ -1509,7 +1604,8 @@
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 20
+        "value_multiplier": 2,
+        "value_modifier": 250
       },{
         "is_artifact": true,
         "name_beginnings": ["törn", "tagg", "kläng", "ros", "gadd", "gift", "lam"],
@@ -1523,7 +1619,8 @@
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 30
+        "value_multiplier": 2,
+        "value_modifier": 400
       },{
         "is_artifact": true,
         "name_beginnings": ["vin", "död", "skräck", "spök", "gen", "tjut"],
@@ -1537,7 +1634,8 @@
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 20
+        "value_multiplier": 2,
+        "value_modifier": 400
       },{
         "is_artifact": true,
         "name_beginnings": ["skön", "guld", "silver"],
@@ -1550,7 +1648,8 @@
         "bonus_modifier": 1,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 30
+        "value_multiplier": 2,
+        "value_modifier": 400
       },{
         "is_artifact": true,
         "name_beginnings": ["blå", "orch"],
@@ -1561,10 +1660,11 @@
         "perk": "Artefakttärning T8 (T10 mot orcher). Vapnets blad lyser blått när orcher är inom Nära avstånd.",
         "drawback": "Vapnet är ökänt bland orcher och alla orcher som ser någon bära det i strid kommer att göra allt de kan för att döda bäraren.",
         "required_properties": ["svärd", "yxa", "spjut", "kniv"],
-        "bonus_modifier": 1,
-        "damage_modifier": 1,
+        "bonus_modifier": 2,
+        "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 30
+        "value_multiplier": 2,
+        "value_modifier": 400
       },{
         "is_artifact": true,
         "name_beginnings": ["varde", "drak", "pansar", "röd"],
@@ -1574,10 +1674,11 @@
         "perk": "Artefakttärning T10. Plagget är gjort av drakläder.",
         "drawback": "Ett lyckat slag för Speja gör att en fiende kan hitta en glipa i bärarens pansar. Att försöka träffa glipan ger –3 på attacken, men i gengäld kan inte bäraren rulla några skyddstärningar.",
         "required_properties": ["läderrustning"],
-        "bonus_modifier": 0,
+        "bonus_modifier": 2,
         "damage_modifier": 0,
-        "armor_modifier": 1,
-        "value_multiplier": 30
+        "armor_modifier": 2,
+        "value_multiplier": 2,
+        "value_modifier": 400
       },{
         "is_artifact": true,
         "name_beginnings": ["rost", "järn", "pansar", "blod"],
@@ -1588,10 +1689,11 @@
         "perk": "Artefakttärning T8. Armborstets järnbåge är rostig och nött, men dess pilar avfyras med sådan kraft att målets skyddsvärde halveras (runda upp).",
         "drawback": "Armborstets pilränna är ovanligt formad och kräver extra tunga hullingsförsedda specialpilar för att avlossas. Dessa kan tillverkas på samma sätt som vanliga pilar med järnspets, men kräver dubbelt så mycket järn.",
         "required_properties": ["armborst"],
-        "bonus_modifier": 0,
-        "damage_modifier": 1,
+        "bonus_modifier": 2,
+        "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 30
+        "value_multiplier": 2,
+        "value_modifier": 400
       },{
         "is_artifact": true,
         "name_beginnings": [],
@@ -1601,10 +1703,11 @@
         "perk": "Föremålets forna ägare talar till bäraren i deras undermedvetna. Där viskas det om svunna tider, och ett och annat hjälpsamt tips. Bäraren får +1 på {{ skill }} så länge föremålet är inom Armslängds avstånd.",
         "drawback": "Rösten från föremålets forna ägare kan inte låta bli att ondgöra sig över bärarens misstag. Varje gång bäraren misslyckas med ett slag för {{ skill }} tar denne 1 poäng skada i KAR.",
         "required_properties": [],
-        "bonus_modifier": 0,
+        "bonus_modifier": 1,
         "damage_modifier": 0,
-        "armor_modifier": 0,
-        "value_multiplier": 20
+        "armor_modifier": 1,
+        "value_multiplier": 2,
+        "value_modifier": 250
       },{
         "is_artifact": true,
         "name_beginnings": ["eld", "flamm", "fyr", "brand", "glöd", "harm"],
@@ -1614,23 +1717,25 @@
         "perk": "Artefakttärning T8. Vapnets egg är naturligt varmt och har förmågan att brinna under ett kvartsdygn om lampolja stryks över eggen. När vapnet brinner lyser det upp området inom Armslängd och vid attacker med vapnet slår bäraren en T6. 1: Den hätska elden bränner bärarens händer som tar 1 poäng skada i STY. 2-3: Inget händer. 4-5: Offret tar 1 poäng skada i STY. 6: Offret fattar eld och tar 1 poäng skada i STY i början av sin runda tills ett slag för Rörlighet lyckas. Rustning skyddar som vanligt.",
         "drawback": "Vapnets magiskt höga temperatur gör att det lättare tar skada. Närhelst vapnets bonus sänks på grund av ett pressat slag, reduceras bonusen ytterligare ett steg.",
         "required_properties": ["egg"],
-        "bonus_modifier": 1,
+        "bonus_modifier": 2,
         "damage_modifier": 0,
         "armor_modifier": 0,
-        "value_multiplier": 30
+        "value_multiplier": 2,
+        "value_modifier": 400
       },{
         "is_artifact": true,
         "name_beginnings": ["stål", "värn", "kant", "hörn", "marg", "bard", "kniv", "sabel", "studs"],
         "name_endings": ["skärme", "brätte", "skygge", "sarge", "bryne", "fäste", "spjärne", "rote"],
         "creator_profession": "krigare",
         "myth": "Det sägs att {{ determiner }} {{ item_name }} smiddes åt {{ race_compound }}{{ profession_definite }} {{ creator_name }} som {{ creator_origin }}.",
-        "perk": "Artefakttärning T8. Sköldens kant är ovanligt vass. Som en lång handling kan bäraren kasta skölden mot en fiende inom Kort avstånd. För att träffa ett mål krävs ett lyckat slag för Skytte, och attacken gör vapenskada lika med sköldens bonus. Om attacken lyckas studsar skölden till en slumpmässigt vald varelse inom Nära avstånd från det ursprungliga målet. Slå ett nytt slag för Skytte för varje nytt mål, men med -1 på slaget för varje tidigare studs. Om ett slag misslyckas faller skölden till marken.",
+        "perk": "Artefakttärning T8. Sköldens kant är ovanligt vass. Som en lång handling kan bäraren kasta skölden mot en fiende inom Kort avstånd. För att träffa ett mål krävs ett lyckat slag för Skytte, och attacken gör grundskada lika med sköldens bonus. Om attacken lyckas studsar skölden till en slumpmässigt vald varelse inom Nära avstånd från det ursprungliga målet. Slå ett nytt slag för Skytte för varje nytt mål, men med -1 på slaget för varje tidigare studs. Om ett slag misslyckas faller skölden till marken.",
         "drawback": "Skölden har i sin flykt inget sätt att skilja på vän eller fiende.",
         "required_properties": ["sköld"],
         "bonus_modifier": 1,
         "damage_modifier": 0,
-        "armor_modifier": 1,
-        "value_multiplier": 30
+        "armor_modifier": 2,
+        "value_multiplier": 2,
+        "value_modifier": 400
       }]},
   "item_names": [
     {

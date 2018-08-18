@@ -5,124 +5,295 @@
     "single": "en",
     "weight": 2
   },
-  {
-    "name": "gråbjörn",
-    "single": "en",
-    "weight": 3
-  },
-  {
-    "name": "nattulv",
-    "single": "en",
-    "weight": 3
-  },
-  {
-    "name": "gast",
-    "single": "en",
-    "weight": 2
-  },
-  {
-    "name": "likätare",
-    "single": "en",
-    "weight": 2
-  },
-  {
-    "name": "skelett",
-    "single": "ett",
-    "weight": 2
-  },
-  {
-    "name": "vandöd",
-    "single": "en",
-    "weight": 2
-  },
-  {
-    "name": "flygödla",
-    "single": "en",
-    "weight": 2
-  },
-  {
-    "name": "harpyor",
-    "single": "en grupp",
-    "weight": 2
-  },
-  {
-    "name": "minotaur",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "ent",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "avgrundsmask",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "jättebläckfisk",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "sjöorm",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "troll",
-    "single": "ett",
-    "weight": 1
-  },
-  {
-    "name": "dödsriddare",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "insektoid",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "blodling",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "mantikora",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "grip",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "jätte",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "hydra",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "demon",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "drakorm",
-    "single": "en",
-    "weight": 1
-  },
-  {
-    "name": "drake",
-    "single": "en",
-    "weight": 1
-  }]
+    {
+      "name": "gråbjörn",
+      "single": "en",
+      "weight": 3
+    },
+    {
+      "name": "nattulv",
+      "single": "en",
+      "weight": 3
+    },
+    {
+      "name": "gast",
+      "single": "en",
+      "weight": 2
+    },
+    {
+      "name": "likätare",
+      "single": "en",
+      "weight": 2
+    },
+    {
+      "name": "skelett",
+      "single": "ett",
+      "weight": 2
+    },
+    {
+      "name": "vandöd",
+      "single": "en",
+      "weight": 2
+    },
+    {
+      "name": "flygödla",
+      "single": "en",
+      "weight": 2
+    },
+    {
+      "name": "harpyor",
+      "single": "en grupp",
+      "weight": 2
+    },
+    {
+      "name": "minotaur",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "ent",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "avgrundsmask",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "jättebläckfisk",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "sjöorm",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "troll",
+      "single": "ett",
+      "weight": 1
+    },
+    {
+      "name": "dödsriddare",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "insektoid",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "blodling",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "mantikora",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "grip",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "jätte",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "hydra",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "demon",
+      "single": "en",
+      "weight": 1,
+      "parts": [
+    {
+          "name": "människa",
+          "heads": [{
+            "name": "människohuvud",
+            "strength": 0,
+            "agility": 0,
+            "intelligence": 2,
+            "charisma": 2,
+            "attacks": ["bitattack"]
+          }],
+          "torsos": [{
+            "name": "människokropp",
+            "strength": 1,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "amount_arms": 2,
+            "amount_legs": 2,
+            "amount_backs": 1,
+            "amount_tails": 1
+          }],
+          "arms": [{
+            "name": "människoarm",
+            "strength": 1,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["närkampsvapen", "knytnävsslag"]
+          }],
+          "legs": [{
+            "name": "människoben",
+            "strength": 0,
+            "agility": 0,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["sparkattack"]
+          }]
+        },
+    {
+          "name": "dvärg",
+          "heads": [{
+            "name": "dvärgahuvud",
+            "strength": 2,
+            "agility": 0,
+            "intelligence": 2,
+            "charisma": 0,
+            "attacks": ["bitattack", "dansk skalle"]
+          }],
+          "torsos": [{
+            "name": "dvärgakropp",
+            "strength": 1,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "amount_arms": 2,
+            "amount_legs": 2,
+            "amount_backs": 1,
+            "amount_tails": 0
+          }],
+          "arms": [{
+            "name": "dvärgarm",
+            "strength": 2,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["närkampsvapen", "knytnävsslag"]
+          }],
+          "legs": [{
+            "name": "dvärgaben",
+            "strength": 0,
+            "agility": 0,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["spark"]
+          }]
+        },
+    {
+          "name": "alv",
+          "heads": [{
+            "name": "alvhuvud",
+            "strength": 0,
+            "agility": 2,
+            "intelligence": 2,
+            "charisma": 0
+          }],
+          "torsos": [{
+            "name": "alvkropp",
+            "strength": 1,
+            "agility": 2,
+            "intelligence": 0,
+            "charisma": 0,
+            "amount_arms": 2,
+            "amount_legs": 2,
+            "amount_backs": 1,
+            "amount_tails": 1
+          }],
+          "arms": [{
+            "name": "alvarm",
+            "strength": 0,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["närkampsvapen", "knytnävsslag"]
+          }],
+          "legs": [{
+            "name": "alvben",
+            "strength": 0,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["spark"]
+          }]
+        },
+    {
+          "name": "björn",
+          "heads": [{
+            "name": "björnhuvud",
+            "strength": 2,
+            "agility": 2,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["bitattack"],
+            "armor": 2
+          }],
+          "torsos": [{
+            "name": "björnkropp",
+            "strength": 3,
+            "agility": 2,
+            "intelligence": 0,
+            "charisma": 0,
+            "amount_arms": 2,
+            "amount_legs": 2,
+            "amount_backs": 1,
+            "amount_tails": 1,
+            "armor": 6
+          }],
+          "arms": [{
+            "name": "björnram",
+            "strength": 2,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["kloattack", "krossande slag"]
+          }],
+          "legs": [{
+            "name": "björnben",
+            "strength": 1,
+            "agility": 1,
+            "intelligence": 0,
+            "charisma": 0,
+            "attacks": ["kloattack"]
+          }],
+          "tails": [{
+            "name": "björnsvans",
+            "strength": 0,
+            "agility": 0,
+            "intelligence": 0,
+            "charisma": 0
+          }]
+        }
+      ],
+      "attacks": [
+        {
+          "name": "bitattack",
+          "description": "demonen försöker bita en äventyrare",
+          "min_damage": 1,
+          "max_damage": 2,
+          "affected_by": "strength"
+        }
+      ]
+    },
+    {
+      "name": "drakorm",
+      "single": "en",
+      "weight": 1
+    },
+    {
+      "name": "drake",
+      "single": "en",
+      "weight": 1
+    }]
 }
