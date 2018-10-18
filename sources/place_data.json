@@ -54,11 +54,11 @@
       "udda byggnadsmaterial", "tältby", "byggd på brant sluttning", "gammalt torn i mitten", "pampig byggnad",
       "blåshål", "inavel", "märkliga matvanor", "byggd på sumpmark", "uthuggen ur klippa", "gammal begravningsplats",
       "frivandrande kreatur", "mest befolkad av kvinnor", "allierad med best", "förbereder för bröllop",
-      "underjordiska gångar", "mest befolkad av män", "många dvärgar", "många alver", "många halvalver"],
+      "underjordiska gångar", "mest befolkad av män", "många dvärgar", "många alver", "många halvalver",
+      "dyr inträdesavgift"],
     "institutions": [
       { "name": "ingen",
-        "weight": 6,
-        "type": "none"},
+        "weight": 6},
 
       { "name": "värdshus",
         "weight": 6,
@@ -82,7 +82,8 @@
 
       { "name": "tempel",
         "weight": 2,
-        "type": "general"},
+        "type": "general",
+        "specializations": ["Orme", "Korp", "Rost", "Stor", "Drejaren", "Vene", "Vanna", "Nattvararen", "Horn"]},
 
       { "name": "milis",
         "weight": 3,
@@ -121,8 +122,9 @@
         "type": "general"},
 
       {"name": "fruktträdgård",
-      "weight": 1,
-      "type": "general"}
+        "weight": 1,
+        "type": "general",
+        "specializations": ["äpple", "päron"]}
     ],
     "taverns": {
       "oddities": ["smockan hänger i luften", "tunnor istället för stolar, plankor istället för bord", "stor eldstad",
@@ -174,7 +176,7 @@
       "endings": ["såker", "smöllan", "atorp", "etorp", "ehög", "ager", "eholm", "aholm", "aby", "lien", "edal", "eberg",
         "aberg", "enäs", "inge", "inga", "träsk", "gård", "ebacka", "ered", "myren", "eby", "eved", "aved", "sved", "hult",
         "elund", "ebo", "kärr", "haga", "hage", "egård", "håla", "byen", "egård", "marken", "mark", "kulla", "akulla",
-      "klippa", "klint", "backa", "backe"]
+        "klippa", "klint", "backa", "backe"]
     }},
   "dungeons": {
     "sizes": [
@@ -203,37 +205,33 @@
         "max_rooms": 86
       }
     ],
-    "ages":
-    [{
+    "ages": [
+      {
       "name": "innan skiftet",
       "weight": 2,
       "min_age": 1100,
       "max_age": 6000
-    },
-      {
-        "name": "innan blodsdimman",
-        "weight": 14,
-        "min_age": 300,
-        "max_age": 1100
-      },
-      {
-        "name": "under de alderländska krigen",
-        "weight": 10,
-        "min_age": 305,
-        "max_age": 360
-      },
-      {
-        "name": "under blodsdimmans tid",
-        "weight": 24,
-        "min_age": 5,
-        "max_age": 280
-      },
-      {
-        "name": "efter blodsdimman",
-        "weight": 2,
-        "min_age": 1,
-        "max_age": 6
-      }],
+    },{
+      "name": "innan blodsdimman",
+      "weight": 14,
+      "min_age": 300,
+      "max_age": 1100
+    }, {
+      "name": "under de alderländska krigen",
+      "weight": 10,
+      "min_age": 305,
+      "max_age": 360
+    }, {
+      "name": "under blodsdimmans tid",
+      "weight": 24,
+      "min_age": 5,
+      "max_age": 280
+    }, {
+      "name": "efter blodsdimman",
+      "weight": 2,
+      "min_age": 1,
+      "max_age": 6
+    }],
     "purposes": [
       {
         "name": "tempel",
@@ -327,11 +325,11 @@
         "resurserna tog slut och grottan övergavs", "skaparna utplånades av en mystisk artefakt",
         "hemsökt av skaparnas osaliga döda", "gick under på grund av interna strigheter",
         "invaderades av fiender", "bebos än idag av skaparna"]},
-    "inhabitants":
-    [{
-      "name": "magiker",
-      "weight": 1
-    },
+    "inhabitants": [
+      {
+        "name": "magiker",
+        "weight": 1
+      },
       {
         "name": "rövare",
         "weight": 2
@@ -432,7 +430,8 @@
         "name": "drake",
         "weight": 1
       }],
-    "entrances": [{
+    "entrances": [
+      {
       "name": "under en byggnad",
       "weight": 2
     },
@@ -504,66 +503,74 @@
       "slemmiga väggar", "torkat blod", "väggmålningar", "onaturliga ekon", "sprickor", "staty", "alkover", "altare",
       "mossa", "droppande ljud", "ett förvridet träd", "pulserande ljud", "mumifierat lik", "eldstad", "avgrundshål",
       "brunn", "underligt formad dödskalle", "mosaik", "förstenad varelse", "tom sarkofag", "aska i form av en mänsklig skepnad",
-      "ormar", "insekter", "råttor", "fladdermöss", "spindelväv", "ett golv fullt av skelettdelar", "varning skriven med blod på väggen",
-      "vilsen äventyrare"],
+      "ormar", "insekter", "råttor", "fladdermöss", "spindelväv", "ett golv fullt av skelettdelar", "varning skriven med blod på väggen"],
     "rooms": {
       "types": [
         {
           "name": "korridor",
-          "weight": 2,
+          "weight": 3,
           "content_rolls": 0},
         {
           "name": "rum",
-          "weight": 2,
+          "weight": 3,
           "content_rolls": 1},
         {
           "name": "sal",
-          "weight": 1,
+          "weight": 2,
           "content_rolls": 2},
         {
-          "name": "trappor eller nedgång",
+          "name": "trappor",
+          "weight": 1,
+          "content_rolls": 0},
+        {
+          "name": "nedgång",
           "weight": 1,
           "content_rolls": 0}],
       "entrances": [
         {
-          "number": 1,
+          "number": "1",
+          "weight": 4},
+        {
+          "number": "2",
           "weight": 2},
         {
-          "number": 2,
-          "weight": 1},
+          "number": "3",
+          "weight": 2},
         {
-          "number": 3,
-          "weight": 1},
+          "number": "4",
+          "weight": 2},
         {
-          "number": 4,
-          "weight": 1},
+          "number": "5",
+          "weight": 2},
         {
-          "number": 5,
-          "weight": 1},
-        {
-          "number": 0,
+          "number": "0",
           "weight": 1}],
       "entrance_states": [
         {
-          "status": "vidöppen",
+          "name": "vidöppen",
           "weight": 1,
-          "trapped": false},
+          "trapped": false,
+          "status": "open"},
         {
-          "status": "olåst",
+          "name": "olåst",
           "weight": 1,
-          "trapped": false},
+          "trapped": false,
+          "status": "unlocked"},
         {
-          "status": "olåst men blockerad",
+          "name": "olåst men blockerad",
           "weight": 1,
-          "trapped": false},
+          "trapped": false,
+          "status": "blocked"},
         {
-          "status": "låst",
+          "name": "låst",
           "weight": 2,
-          "trapped": false},
+          "trapped": false,
+          "status": "locked"},
         {
-          "status": "låst och försedd med fälla",
+          "name": "låst och försedd med fälla",
           "weight": 1,
-          "trapped": true}
+          "trapped": true,
+          "status": "trapped"}
       ],
       "contents": [
         {
@@ -589,37 +596,96 @@
         }],
       "treasures": [
         {
-          "name": "sarkofag",
+          "name": "sarkofag (kräver slag för styrkeprov för att öppna)",
           "weight": 1,
-          "trap_chance": 1,
-          "enemy": {"name": "gast", "chance": 1},
+          "trap_chance": 2,
           "simple_treasure_rolls": 0,
           "valuable_treasure_rolls": 1,
-          "precious_treasure_rolls": 1
-        },
-        {
+          "precious_treasure_rolls": 1,
+          "max_weight": 2
+        },{
+          "name": "säck",
+          "weight": 2,
+          "trap_chance": 0,
+          "simple_treasure_rolls": 2,
+          "valuable_treasure_rolls": 0,
+          "precious_treasure_rolls": 0,
+          "max_weight": 2
+        },{
+          "name": "ryggsäck",
+          "weight": 1,
+          "trap_chance": 0,
+          "simple_treasure_rolls": 1,
+          "valuable_treasure_rolls": 1,
+          "precious_treasure_rolls": 0,
+          "max_weight": 1
+        },{
+          "name": "skrin",
+          "weight": 1,
+          "trap_chance": 0,
+          "simple_treasure_rolls": 0,
+          "valuable_treasure_rolls": 1,
+          "precious_treasure_rolls": 0,
+          "max_weight": 0
+        },{
+          "name": "stor kista",
+          "weight": 1,
+          "trap_chance": 2,
+          "simple_treasure_rolls": 1,
+          "valuable_treasure_rolls": 1,
+          "precious_treasure_rolls": 1,
+          "max_weight": 2
+        },{
+          "name": "tunna",
+          "weight": 2,
+          "trap_chance": 0,
+          "simple_treasure_rolls": 3,
+          "valuable_treasure_rolls": 0,
+          "precious_treasure_rolls": 0,
+          "max_weight": 2
+        },{
           "name": "kista",
           "weight": 1,
           "trap_chance": 2,
-          "enemy": {"name": "", "chance": 0},
-          "simple_treasure_rolls": 1,
+          "simple_treasure_rolls": 2,
           "valuable_treasure_rolls": 1,
-          "precious_treasure_rolls": 0
-        },
-        {
-          "name": "enkelt fynd",
-          "weight": 2,
+          "precious_treasure_rolls": 0,
+          "max_weight": 1
+        }, {
+          "name": "låst skrin",
+          "weight": 1,
           "trap_chance": 0,
-          "enemy": {"name": "", "chance": 0},
+          "simple_treasure_rolls": 0,
+          "valuable_treasure_rolls": 0,
+          "precious_treasure_rolls": 1,
+          "max_weight": 0
+        },{
+          "name": "stor låst kista",
+          "weight": 1,
+          "trap_chance": 2,
+          "simple_treasure_rolls": 0,
+          "valuable_treasure_rolls": 2,
+          "precious_treasure_rolls": 1,
+          "max_weight": 2
+        },{
+          "name": "låst kista",
+          "weight": 1,
+          "trap_chance": 2,
+          "simple_treasure_rolls": 1,
+          "valuable_treasure_rolls": 2,
+          "precious_treasure_rolls": 0,
+          "max_weight": 1
+        }, {
+          "name": "enkelt fynd",
+          "weight": 3,
+          "trap_chance": 0,
           "simple_treasure_rolls": 1,
           "valuable_treasure_rolls": 0,
           "precious_treasure_rolls": 0
-        },
-        {
+        }, {
           "name": "värdefullt fynd",
-          "weight": 1,
+          "weight": 2,
           "trap_chance": 0,
-          "enemy": {"name": "", "chance": 0},
           "simple_treasure_rolls": 0,
           "valuable_treasure_rolls": 1,
           "precious_treasure_rolls": 0
@@ -628,35 +694,35 @@
         {
           "name": "fallucka",
           "weight": 5,
-          "effect": "fall {{ effect }} meter",
+          "effect": "Fall på {{ effect }} meter",
           "victim": "den som går först",
           "effect_min": 4,
           "effect_max": 9
         },
         {
           "name": "spjut",
-          "weight": 8,
-          "effect": "attack med sju grundtärningar, vapenskapa 2, stickskada",
+          "weight": 4,
+          "effect": "Attack med sju grundtärningar, vapenskapa 2, stickskada",
           "victim": "den som går först"
         },
         {
-          "name": "Pilar",
-          "weight": 8,
-          "effect": "attack med fem grundtärningar, vapenskada 1, stickskada",
+          "name": "pilar",
+          "weight": 4,
+          "effect": "Attack med fem grundtärningar, vapenskada 1, stickskada",
           "victim": "de två som går först"
         },
         {
           "name": "gift",
           "weight": 3,
-          "effect": "dödligt gift (giftstyrka {{ effect }})",
+          "effect": "Dödligt gift (giftstyrka {{ effect }})",
           "victim": "den som går först",
           "effect_min": 4,
           "effect_max": 9
         },
         {
           "name": "gas",
-          "weight": 8,
-          "effect": "hallucinogent gift (giftstyrka {{ effect }})",
+          "weight": 3,
+          "effect": "Hallucinogent gift (giftstyrka {{ effect }})",
           "victim": "alla",
           "effect_min": 5,
           "effect_max": 10
@@ -664,31 +730,31 @@
         {
           "name": "stenbumling",
           "weight": 4,
-          "effect": "attack med sju grundtärningar, vapenskada 1, krosskada",
+          "effect": "Attack med sju grundtärningar, vapenskada 1, krosskada",
           "victim": "slumpmässigt vald äventyrare"
         },
         {
           "name": "spikar",
           "weight": 4,
-          "effect": "attack med sex grundtärningar, vapenskada 2, stickskada",
+          "effect": "Attack med sex grundtärningar, vapenskada 2, stickskada",
           "victim": "slumpmässigt vald äventyrare"
         },
         {
           "name": "vatten",
           "weight": 2,
-          "effect": "slag för rörlighet(-1) för att undvika, annars se drunkning (Spelarboken sid xx). nytt slag för rörlighet får slås varje runda för att fly.",
+          "effect": "Slag för Rörlighet (-1) för att undvika, annars se drunkning (Spelarboken sid xx). Nytt slag för Rörlighet får slås varje runda för att fly",
           "victim": "alla"
         },
         {
           "name": "krossande väggar",
           "weight": 2,
-          "effect": "slag för rörlighet(-1) för att undvika, annars attack med tio grundtärningar, vapenskada 1, krosskada. fortsätter varje runda tills rörlighet-slaget lyckas.",
+          "effect": "Slag för Rörlighet (-1) för att undvika, annars attack med tio grundtärningar, vapenskada 1, krosskada. Fortsätter varje runda tills Rörlighet-slaget lyckas",
           "victim": "alla"
         },
         {
           "name": "eld",
           "weight": 3,
-          "effect": "attack med sju grundtärningar, vapenskada 1. fortsätter varje runda tills slag för rörlighet lyckats släcka kläderna.",
+          "effect": "Attack med sju grundtärningar, vapenskada 1. Fortsätter varje runda tills slag för Rörlighet lyckats släcka kläderna",
           "victim": "slumpmässigt vald äventyrare"
         }]}
   },
