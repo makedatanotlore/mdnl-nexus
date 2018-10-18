@@ -48,7 +48,9 @@ VALUABLE_COPPER_LIMIT = 400
 CHEAP_TIER_WEIGHTS = {'junk': 70, 'common': 30}
 VALUABLE_TIER_WEIGHTS = {'common': 60, 'uncommon': 40}
 PRECIOUS_TIER_WEIGHTS = {'uncommon': 45, 'rare': 53, 'epic': 2}
-TIER_WEIGHTS = {'cheap': CHEAP_TIER_WEIGHTS, 'valuable': VALUABLE_TIER_WEIGHTS, 'precious': PRECIOUS_TIER_WEIGHTS}
+ARTIFACT_TIER_WEIGHTS = {'epic': 1}
+TIER_WEIGHTS = {'cheap': CHEAP_TIER_WEIGHTS, 'valuable': VALUABLE_TIER_WEIGHTS, 'precious': PRECIOUS_TIER_WEIGHTS,
+                'artifact': ARTIFACT_TIER_WEIGHTS}
 
 CHEAP_ITEMS = {
     'treasure': [treasure for treasure in TREASURES if treasure.get('value_in_copper') < CHEAP_COPPER_LIMIT],
@@ -63,12 +65,12 @@ VALUABLE_ITEMS = {
     'tool': [tool for tool in TOOLS if tool.get('value_in_copper') < VALUABLE_COPPER_LIMIT]}
 
 PRECIOUS_ITEMS = {
-    'treasure': [treasure for treasure in TREASURES],
-    'armor': [armor for armor in ARMORS],
-    'weapon': [weapon for weapon in WEAPONS],
-    'tool': [tool for tool in TOOLS]}
+    'treasure': [treasure for treasure in TREASURES if not treasure.get('ignore_tier')],
+    'armor': [armor for armor in ARMORS if not armor.get('ignore_tier')],
+    'weapon': [weapon for weapon in WEAPONS if not weapon.get('ignore_tier')],
+    'tool': [tool for tool in TOOLS if not tool.get('ignore_tier')]}
 
-ITEM_VALUES = {'cheap': CHEAP_ITEMS, 'valuable': VALUABLE_ITEMS, 'precious': PRECIOUS_ITEMS}
+ITEM_VALUES = {'cheap': CHEAP_ITEMS, 'valuable': VALUABLE_ITEMS, 'precious': PRECIOUS_ITEMS, 'artifact': PRECIOUS_ITEMS}
 
 TIERS = {tier: [Tier(
     descriptions=subtier.get('descriptions'),
@@ -147,11 +149,11 @@ def generate_item(item_types, item_value='cheap', max_weight=100):
         item_myth = item_myth.replace('{{ determiner }}',
                                       item_data['determiners'][item.get("indefinite")])
         item_myth = item_myth.replace('{{ item_name }}', item.get('name').split(' ')[-1])
-        item_myth = item_myth.replace('{{ race_compound }}', creator.race.compound)
+        item_myth = item_myth.replace('{{ race_compound }}', creator.kin.compound)
         item_myth = item_myth.replace('{{ profession_definite }}', creator.profession.definite)
 
         item_myth = item_myth.replace('{{ creator_origin }}', random.choice(item_data['creator_origins']))
-        skills = {s['name']: s['level'] for s in creator.skills}
+        skills = {s.name: s.level for s in creator.skills}
         skill = max(skills, key=(lambda key: skills[key])).capitalize()
         item_perk = item_tier.perk.replace('{{ skill }}', skill)
         item_drawback = item_tier.drawback.replace('{{ skill }}', skill)
